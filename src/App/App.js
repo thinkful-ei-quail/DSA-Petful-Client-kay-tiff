@@ -5,6 +5,7 @@ import './App.css';
 import {Route} from 'react-router-dom';
 
 import config from "../config";
+import IntroPage from "../pages/IntroPage/IntroPage";
 
 class App extends Component {
 
@@ -54,12 +55,22 @@ class App extends Component {
         });
     }
     
+    renderRoutes(){
+        return(
+            <>
+                <Route
+                    exact path = '/'
+                    component= {IntroPage}
+                />
 
+            </>
+        )
+    }
 
     render() {
         return(
             <div className='container'>
-               
+               {this.renderRoutes()}
             </div>
         );
     }
