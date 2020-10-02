@@ -2,7 +2,8 @@
 
 https://petful-client-peach.vercel.app
 
-
+## Important notes:
+    Queue is the client name for People used on the server side.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

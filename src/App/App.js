@@ -6,6 +6,7 @@ import {Route} from 'react-router-dom';
 
 import config from "../config";
 import IntroPage from "../pages/IntroPage/IntroPage";
+import HomePage from "../pages/HomePage/HomePage";
 
 class App extends Component {
 
@@ -61,6 +62,10 @@ class App extends Component {
                 <Route
                     exact path = '/'
                     component= {IntroPage}
+                />
+                <Route
+                    path = '/home'
+                    component = {HomePage}
                 />
 
             </>
