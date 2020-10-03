@@ -21,7 +21,7 @@ class Dog extends Component {
 
         return(
             <div className='main-dog'>
-               <img src={dog.imageURL} alt='my headshot'/>
+               <img className='img' src={dog.imageURL} alt='my headshot'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>
                <p>Age: {dog.age}</p>

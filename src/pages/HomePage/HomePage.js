@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import './HomePage.css'
 
 import Header from '../../components/Header/Header';
 import Cat from '../../components/Cat/Cat';
@@ -19,9 +20,6 @@ class HomePage extends Component {
 
         };
     }
-
-
-
 
     render() {
         const displayForm = () => {
@@ -49,19 +47,17 @@ class HomePage extends Component {
         }
 
         return(
-            <div className='container'>
+            <div className='home'>
               <Header/>
-              <div className= 'column'>
+              <div className= 'column pet'>
                 {displayCat()}
                 {displayDog()}
-                <button>GET IN LINE</button>
+                
               </div>
-              <div className= 'column'>
+              <button>GET IN LINE</button>
+              <div className= 'column queue'>
                   {displayForm()} 
               </div>
-
-
-              <Adopt/>
             </div>
         );
     }
