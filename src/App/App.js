@@ -24,7 +24,7 @@ class App extends Component {
             isFirst: false,
             adoptCat : false,
             adoptDog : false,
-
+            userName : "",
         };
     }
  
@@ -129,6 +129,9 @@ class App extends Component {
         });
     }
 
+    updateUserName = (name) => {
+        this.setState({ userName: name})
+    }
 
     render() {
         const value = {
@@ -141,11 +144,13 @@ class App extends Component {
             isFirst: this.state.isFirst,
             adoptCat: this.state.adoptCat,
             adoptDog: this.state.adoptDog,
+            userName: this.state.userName,
             enqueue: this.enqueue,
             splitName: this.splitName,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
             refreshPage: this.refreshPage,
+            updateUserName: this.updateUserName,
         }
 
         return(

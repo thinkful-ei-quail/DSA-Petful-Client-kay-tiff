@@ -10,6 +10,8 @@ export default React.createContext({
   splitName: () => {},
   onClickJoin: () => {},
   refreshPage: () => {},
+  updateUserName: () => {},
   inLine: '',
   isFirst: '',
+  userName: '',
 })
