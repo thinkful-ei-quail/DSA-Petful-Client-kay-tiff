@@ -52,7 +52,7 @@ class Form extends Component {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: `${this.state.name.value}`,
+                    person: `${this.state.name.value}`,
                 }),
             })
             .then((res)=> {
