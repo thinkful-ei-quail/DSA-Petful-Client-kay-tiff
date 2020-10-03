@@ -106,11 +106,29 @@ class App extends Component {
         window.location.reload(false);
     }
     onClickJoin = () => {
+        if (this.state.inLine){
+            console.log( 'You are already in line!')
+        }else{
         this.setState({ isAdding : true})
+        }
     }
     onClickSubmit = () => {
         this.setState({ isAdding : false, inLine: true})
     }
+
+    enqueue = () => {
+        fetch(`${config.API_ENDPOINT}people`)
+        .then((res) => res.json())
+        .then((queue) => {
+          this.setState({
+            queue,
+          });
+        })
+        .catch((e) => {
+          console.log("Error loading queue data");
+        });
+    }
+
 
     render() {
         const value = {
@@ -123,6 +141,7 @@ class App extends Component {
             isFirst: this.state.isFirst,
             adoptCat: this.state.adoptCat,
             adoptDog: this.state.adoptDog,
+            enqueue: this.enqueue,
             splitName: this.splitName,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,

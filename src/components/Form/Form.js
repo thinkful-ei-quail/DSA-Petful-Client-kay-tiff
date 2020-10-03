@@ -40,6 +40,16 @@ class Form extends Component {
         this.context.onClickSubmit();
         return true;
     };
+    
+    // fetch(`${config.API_ENDPOINT}people`)// people queue
+    // .then(response => response.json())
+    // .then((queue) => {
+    //   console.log('queue', queue)
+    //   this.setState({queue});
+    // })
+    // .catch((error) => {
+    //   console.error(error.message );
+    // });
 
     submitPerson = (e) => {
         e.preventDefault();
@@ -57,13 +67,14 @@ class Form extends Component {
                     person: `${this.state.name.value}`,
                 }),
             })
-            .then((res)=> {
+            .then((res)=> { 
                 return res.json();
             })
             .then((response)=>{
+                
                 this.context.enqueue();
                 this.setState({
-                    redirect: "home"
+                    redirect: "/home"
                 })
             })
             .catch((error) => {
