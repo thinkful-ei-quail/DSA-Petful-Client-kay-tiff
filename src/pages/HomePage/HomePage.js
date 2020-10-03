@@ -7,17 +7,19 @@ import Dog from '../../components/Dog/Dog';
 import Queue from '../../components/Queue/Queue';
 import Form from '../../components/Form/Form';
 import Adopt from '../../components/Adopt/Adopt';
-
+import ApiContext from '../../ApiContext';
 
 class HomePage extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
+
+            inLine: false,
+            isFirst: false,
             isAdding : false,
             adoptingCat : false,
             adoptingDog : false,
-
         };
     }
 
@@ -40,11 +42,11 @@ class HomePage extends Component {
             }
         }
 
-        const toggleAddTrue = () => {
+        const onClickJoin = () => {
             this.setState({ isAdding : true})
         }
 
-        const toggleAddFalse = () => {
+        const onClickSubmit = () => {
             this.setState({ isAdding : false})
         }
         const displayForm = () => {
@@ -67,7 +69,7 @@ class HomePage extends Component {
                 {displayDog()}
               </div>
                 <div className='btn'>
-                <button onClick={toggleAddTrue}>Sign Up & Adopt!</button>
+                <button onClick={onClickJoin}>Sign Up & Adopt!</button>
                 </div>
               <div className= 'queue'>
                   {displayForm()} 

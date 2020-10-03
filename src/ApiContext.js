@@ -7,5 +7,7 @@ export default React.createContext({
   queue: [],
   enqueue: () => {},
   dequeue: () => {},
-  isFirst: false,
+  splitName: () => {},
+  inLine: '',
+  isFirst: '',
 })

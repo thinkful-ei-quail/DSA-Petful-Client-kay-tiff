@@ -18,12 +18,15 @@ class App extends Component {
             pets:[],
             dog: [],
             cat: [],
-            people: [],
-
+            queue: [],
+            inLine: false,
+            isFirst: false,
+            isAdding : false,
+            adoptingCat : false,
+            adoptingDog : false,
         };
     }
-
-   
+ 
     componentDidMount() {
 
         fetch(`${config.API_ENDPOINT}pets`)//all pets
@@ -66,7 +69,6 @@ class App extends Component {
           console.error(error.message );
         });
     }
-
     renderRoutes(){
         return(
             <>
@@ -82,7 +84,6 @@ class App extends Component {
             </>
         )
     }
-
     splitName(name){
         
         let result= name;
@@ -94,8 +95,6 @@ class App extends Component {
         }
         return result
     }
-
-
     // handleAdoptPet = (pet_id) => {
     //     this.setState({
     //       pets: this.state.pets.filter((pet) => pet.pet_id !== pet_id),
@@ -108,6 +107,7 @@ class App extends Component {
             dog: this.state.dog,
             cat: this.state.cat,
             queue: this.state.queue,
+            
             splitName: this.splitName,
         }
 
