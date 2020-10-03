@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import './Form.css'
 
 import config from '../../config';
+import ApiContext from '../../ApiContext';
 
 class Form extends Component {
 
@@ -17,7 +18,7 @@ class Form extends Component {
             redirect: null,
         };
     }
-
+    static contextType = ApiContext;
 
     static defaultProps = {
         viewtype: false,
@@ -36,6 +37,7 @@ class Form extends Component {
             })
             return false;
         }
+        this.context.onClickSubmit();
         return true;
     };
 

@@ -18,13 +18,8 @@ class HomePage extends Component {
 
         };
     }
-
     static contextType = ApiContext;
-
-
     render() {
-
-
         const displayCat = () => {
             if (this.context.adoptCat){
                 return <Adopt/>
@@ -32,7 +27,6 @@ class HomePage extends Component {
                 return <Cat/>
             }
         }
-
         const displayDog = () => {
             if (this.context.adoptDog){
                 return <Adopt/>
@@ -40,9 +34,6 @@ class HomePage extends Component {
                 return <Dog/>
             }
         }
-
-
-
         const displayForm = () => {
             if (this.context.isAdding){
                 return (
