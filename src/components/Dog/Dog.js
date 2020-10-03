@@ -21,6 +21,7 @@ class Dog extends Component {
 
         return(
             <div className='main-dog'>
+               <button>adopt a dog</button>
                <img className='img' src={dog.imageURL} alt='my headshot'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>

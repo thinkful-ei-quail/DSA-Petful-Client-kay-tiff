@@ -23,6 +23,7 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
+               <button>adopt a cat</button>
                <img src={cat.imageURL} alt='my headshot'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
