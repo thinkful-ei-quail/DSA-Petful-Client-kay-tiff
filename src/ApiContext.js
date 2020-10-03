@@ -7,4 +7,9 @@ export default React.createContext({
   queue: [],
   enqueue: () => {},
   dequeue: () => {},
+  splitName: () => {},
+  onClickJoin: () => {},
+  refreshPage: () => {},
+  inLine: '',
+  isFirst: '',
 })

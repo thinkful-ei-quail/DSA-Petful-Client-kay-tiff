@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import './Form.css'
 
 import config from '../../config';
+import ApiContext from '../../ApiContext';
 
 class Form extends Component {
 
@@ -17,7 +18,7 @@ class Form extends Component {
             redirect: null,
         };
     }
-
+    static contextType = ApiContext;
 
     static defaultProps = {
         viewtype: false,
@@ -36,8 +37,19 @@ class Form extends Component {
             })
             return false;
         }
+        this.context.onClickSubmit();
         return true;
     };
+    
+    // fetch(`${config.API_ENDPOINT}people`)// people queue
+    // .then(response => response.json())
+    // .then((queue) => {
+    //   console.log('queue', queue)
+    //   this.setState({queue});
+    // })
+    // .catch((error) => {
+    //   console.error(error.message );
+    // });
 
     submitPerson = (e) => {
         e.preventDefault();
@@ -52,16 +64,17 @@ class Form extends Component {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    name: `${this.state.name.value}`,
+                    person: `${this.state.name.value}`,
                 }),
             })
-            .then((res)=> {
+            .then((res)=> { 
                 return res.json();
             })
             .then((response)=>{
+                
                 this.context.enqueue();
                 this.setState({
-                    redirect: "home"
+                    redirect: "/home"
                 })
             })
             .catch((error) => {

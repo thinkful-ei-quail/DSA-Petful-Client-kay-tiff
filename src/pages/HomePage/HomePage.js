@@ -7,48 +7,35 @@ import Dog from '../../components/Dog/Dog';
 import Queue from '../../components/Queue/Queue';
 import Form from '../../components/Form/Form';
 import Adopt from '../../components/Adopt/Adopt';
-
+import ApiContext from '../../ApiContext';
 
 class HomePage extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            isAdding : false,
-            adoptingCat : false,
-            adoptingDog : false,
+
 
         };
     }
-
+    static contextType = ApiContext;
     render() {
-
-
         const displayCat = () => {
-            if (this.state.adoptingCat){
+            if (this.context.adoptCat){
                 return <Adopt/>
             } else {
                 return <Cat/>
             }
         }
-
         const displayDog = () => {
-            if (this.state.adoptingDog){
+            if (this.context.adoptDog){
                 return <Adopt/>
             } else {
                 return <Dog/>
             }
         }
-
-        const toggleAddTrue = () => {
-            this.setState({ isAdding : true})
-        }
-
-        const toggleAddFalse = () => {
-            this.setState({ isAdding : false})
-        }
         const displayForm = () => {
-            if (this.state.isAdding){
+            if (this.context.isAdding){
                 return (
                     <Form/>
                 )
@@ -67,7 +54,7 @@ class HomePage extends Component {
                 {displayDog()}
               </div>
                 <div className='btn'>
-                <button onClick={toggleAddTrue}>Sign Up & Adopt!</button>
+                <button onClick={this.context.onClickJoin}>Sign Up & Adopt!</button>
                 </div>
               <div className= 'queue'>
                   {displayForm()} 
