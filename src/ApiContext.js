@@ -8,6 +8,7 @@ export default React.createContext({
   enqueue: () => {},
   dequeue: () => {},
   splitName: () => {},
+  onClickJoin: () => {},
   inLine: '',
   isFirst: '',
 })

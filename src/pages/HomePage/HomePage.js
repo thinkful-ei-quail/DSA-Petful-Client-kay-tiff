@@ -15,19 +15,18 @@ class HomePage extends Component {
         super(props)
         this.state = {
 
-            inLine: false,
-            isFirst: false,
-            isAdding : false,
-            adoptingCat : false,
-            adoptingDog : false,
+
         };
     }
+
+    static contextType = ApiContext;
+
 
     render() {
 
 
         const displayCat = () => {
-            if (this.state.adoptingCat){
+            if (this.context.adoptCat){
                 return <Adopt/>
             } else {
                 return <Cat/>
@@ -35,22 +34,17 @@ class HomePage extends Component {
         }
 
         const displayDog = () => {
-            if (this.state.adoptingDog){
+            if (this.context.adoptDog){
                 return <Adopt/>
             } else {
                 return <Dog/>
             }
         }
 
-        const onClickJoin = () => {
-            this.setState({ isAdding : true})
-        }
 
-        const onClickSubmit = () => {
-            this.setState({ isAdding : false})
-        }
+
         const displayForm = () => {
-            if (this.state.isAdding){
+            if (this.context.isAdding){
                 return (
                     <Form/>
                 )
@@ -69,7 +63,7 @@ class HomePage extends Component {
                 {displayDog()}
               </div>
                 <div className='btn'>
-                <button onClick={onClickJoin}>Sign Up & Adopt!</button>
+                <button onClick={this.context.onClickJoin}>Sign Up & Adopt!</button>
                 </div>
               <div className= 'queue'>
                   {displayForm()} 

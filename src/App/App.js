@@ -19,11 +19,12 @@ class App extends Component {
             dog: [],
             cat: [],
             queue: [],
+            isAdding: false,
             inLine: false,
             isFirst: false,
-            isAdding : false,
-            adoptingCat : false,
-            adoptingDog : false,
+            adoptCat : false,
+            adoptDog : false,
+
         };
     }
  
@@ -101,14 +102,28 @@ class App extends Component {
     //     });
     //   };
 
+
+    onClickJoin = () => {
+        this.setState({ isAdding : true})
+    }
+    onClickSubmit = () => {
+        this.setState({ isAdding : false, inLine: true})
+    }
+
     render() {
         const value = {
             pets: this.state.pets,
             dog: this.state.dog,
             cat: this.state.cat,
             queue: this.state.queue,
-            
+            isAdding: this.state.isAdding,
+            inLine: this.state.inLine,
+            isFirst: this.state.isFirst,
+            adoptCat: this.state.adoptCat,
+            adoptDog: this.state.adoptDog,
             splitName: this.splitName,
+            onClickJoin: this.onClickJoin,
+            onClickSubmit: this.onClickSubmit,
         }
 
         return(
