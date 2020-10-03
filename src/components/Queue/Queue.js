@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext';
+import './Queue.css';
 
 class Queue extends Component {
 
@@ -17,11 +18,14 @@ class Queue extends Component {
         return(
             <div className='queue-container'>
                <h1>Adopters in line:</h1>
-               {queue.map((person, i) => 
+                <ul>        
+                {queue.map((person, i) => 
                 <li className='person' key={i}>
                     <p>{person}</p>
                 </li>
                 )}
+               </ul>
+
             </div>
         );
     }
