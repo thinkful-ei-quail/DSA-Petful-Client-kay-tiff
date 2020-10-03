@@ -1,7 +1,5 @@
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext';
-import './Cat.css';
-//import  from '../';
 
 class Cat extends Component {
 
@@ -23,7 +21,7 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               <button>adopt a cat</button>
+               <div className='btn'><button>Adopt A Cat</button></div>
                <img src={cat.imageURL} alt='my headshot'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>

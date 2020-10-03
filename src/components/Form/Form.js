@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-
+import './Form.css'
 
 import config from '../../config';
 
@@ -88,18 +88,18 @@ class Form extends Component {
         this.history = otherProps.history;
 
         return(
-            <div className='container'>
-               <h1>GET IN LINE</h1>
+            <div className='form'>
+               <h1>Sign Up</h1>
                <form onSubmit={(e) => this.submitPerson(e)}>
-                   <label>
-                        Name:
+                   <label className='form-row'>
+                        Name: 
                         <input
                             type='text'
                             name='name'
                             onChange={(e) => this.updateName(e.target.value)}
                         />
                    </label>
-                   <input type="submit" name="submit"/>
+                   <div className='form-row'><input type="submit" name="submit"/></div>
                 </form>
             </div>
         );

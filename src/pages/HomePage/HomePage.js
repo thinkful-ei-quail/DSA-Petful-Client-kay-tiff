@@ -60,16 +60,16 @@ class HomePage extends Component {
         return(
             <div className='home'>
               <Header/>
-              <div className= 'column pet'>
+              <div className= 'cat-column'>
                 {displayCat()}
-                {displayDog()}
-                
               </div>
-                <button
-                    onClick={toggleAddTrue}
-                >
-                  GET IN LINE</button>
-              <div className= 'column queue'>
+              <div className= 'dog-column'>
+                {displayDog()}
+              </div>
+                <div className='btn'>
+                <button onClick={toggleAddTrue}>Sign Up & Adopt!</button>
+                </div>
+              <div className= 'queue'>
                   {displayForm()} 
               </div>
             </div>

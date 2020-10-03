@@ -13,6 +13,17 @@
   }
 }
 
+img{
+  width: 100%;
+  height: auto;
+}
+
+.btn{
+  text-align: center;
+  margin: 10px;
+  border-radius: 3px;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;

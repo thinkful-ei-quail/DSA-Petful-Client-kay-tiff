@@ -1,8 +1,6 @@
 
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext';
-import './Dog.css';
-//import  from '../';
 
 class Dog extends Component {
 
@@ -21,7 +19,7 @@ class Dog extends Component {
 
         return(
             <div className='main-dog'>
-               <button>adopt a dog</button>
+               <div className='btn'><button>Adopt A Dog</button></div>
                <img className='img' src={dog.imageURL} alt='my headshot'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>
