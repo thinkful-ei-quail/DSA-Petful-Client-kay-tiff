@@ -22,13 +22,7 @@ class HomePage extends Component {
     }
 
     render() {
-        const displayForm = () => {
-            if (this.state.isAdding){
-                return <Form/>
-            } else {
-                return <Queue/>
-            }
-        }
+
 
         const displayCat = () => {
             if (this.state.adoptingCat){
@@ -46,6 +40,23 @@ class HomePage extends Component {
             }
         }
 
+        const toggleAddTrue = () => {
+            this.setState({ isAdding : true})
+        }
+
+        const toggleAddFalse = () => {
+            this.setState({ isAdding : false})
+        }
+        const displayForm = () => {
+            if (this.state.isAdding){
+                return (
+                    <Form/>
+                )
+            } else {
+                return <Queue/>
+            }
+        }
+
         return(
             <div className='home'>
               <Header/>
@@ -54,7 +65,10 @@ class HomePage extends Component {
                 {displayDog()}
                 
               </div>
-              <button>GET IN LINE</button>
+                <button
+                    onClick={toggleAddTrue}
+                >
+                  GET IN LINE</button>
               <div className= 'column queue'>
                   {displayForm()} 
               </div>

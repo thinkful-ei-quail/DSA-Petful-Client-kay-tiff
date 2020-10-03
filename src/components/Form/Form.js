@@ -44,6 +44,7 @@ class Form extends Component {
         this.setState({isError: false, errorMsg: ""});
 
         if (this.validatePerson()) {
+
             
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
