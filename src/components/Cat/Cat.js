@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ApiContext from '../../ApiContext';
-//import './';
+import './Cat.css';
 //import  from '../';
 
 class Cat extends Component {
