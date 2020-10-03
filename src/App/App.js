@@ -9,6 +9,7 @@ import config from "../config";
 import IntroPage from "../pages/IntroPage/IntroPage";
 import HomePage from "../pages/HomePage/HomePage";
 
+
 class App extends Component {
 
     constructor(props) {
