@@ -82,17 +82,32 @@ class App extends Component {
         )
     }
 
-    // handleDeleteingredient = (pet_id) => {
+    splitName(name){
+        
+        let result= name;
+        for (let i= 0; i <name.length; i++){
+            if (name[i] === ' '){
+                result = (name.slice(0,i))
+                return result
+            }
+        }
+        return result
+    }
+
+
+    // handleAdoptPet = (pet_id) => {
     //     this.setState({
     //       pets: this.state.pets.filter((pet) => pet.pet_id !== pet_id),
     //     });
     //   };
+
     render() {
         const value = {
             pets: this.state.pets,
             dog: this.state.dog,
             cat: this.state.cat,
             queue: this.state.queue,
+            splitName: this.splitName,
         }
 
         return(
