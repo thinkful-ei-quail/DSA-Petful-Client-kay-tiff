@@ -102,7 +102,9 @@ class App extends Component {
     //     });
     //   };
 
-
+    refreshPage = () => {
+        window.location.reload(false);
+    }
     onClickJoin = () => {
         this.setState({ isAdding : true})
     }
@@ -124,6 +126,7 @@ class App extends Component {
             splitName: this.splitName,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
+            refreshPage: this.refreshPage,
         }
 
         return(

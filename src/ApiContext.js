@@ -9,6 +9,7 @@ export default React.createContext({
   dequeue: () => {},
   splitName: () => {},
   onClickJoin: () => {},
+  refreshPage: () => {},
   inLine: '',
   isFirst: '',
 })
