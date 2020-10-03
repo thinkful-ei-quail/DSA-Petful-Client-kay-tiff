@@ -78,6 +78,7 @@ class Form extends Component {
         this.setState({ name: { value: name }})
     }
 
+
     render() {
         
         if (this.state.redirect) {
