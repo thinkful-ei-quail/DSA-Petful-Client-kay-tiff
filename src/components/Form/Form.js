@@ -57,7 +57,7 @@ class Form extends Component {
 
         if (this.validatePerson()) {
 
-            
+            this.context.updateUserName(this.state.name);
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
                 headers: {
@@ -84,7 +84,7 @@ class Form extends Component {
                 })
             })
         }
-        console.log(this.state)
+        console.log(this.context)
     }
 
     updateName = (name) => {
