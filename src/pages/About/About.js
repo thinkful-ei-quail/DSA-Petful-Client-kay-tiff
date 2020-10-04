@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Header from '../../components/Header/Header';
 import {Link} from 'react-router-dom';
-import './IntroPage.css'
-class IntroPage extends Component {
+import './About.css'
+class About extends Component {
 
 
 
@@ -23,4 +23,4 @@ class IntroPage extends Component {
     }
 }
 
-export default IntroPage
+export default About

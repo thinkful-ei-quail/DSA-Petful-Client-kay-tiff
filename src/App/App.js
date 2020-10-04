@@ -6,7 +6,7 @@ import {Route} from 'react-router-dom';
 
 import ApiContext from "../ApiContext";
 import config from "../config";
-import IntroPage from "../pages/IntroPage/IntroPage";
+import About from "../pages/About/About";
 import HomePage from "../pages/HomePage/HomePage";
 
 
@@ -75,7 +75,7 @@ class App extends Component {
             <>
                 <Route
                     exact path = '/'
-                    component= {IntroPage}
+                    component= {About}
                 />
                 <Route
                     path = '/home'
