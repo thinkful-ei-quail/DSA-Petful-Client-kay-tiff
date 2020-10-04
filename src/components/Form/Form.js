@@ -56,7 +56,7 @@ class Form extends Component {
         this.setState({isError: false, errorMsg: ""});
 
         if (this.validatePerson()) {
-
+            //look at this
             this.context.updateUserName(this.state.name);
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
@@ -84,6 +84,7 @@ class Form extends Component {
                 })
             })
         }
+        //look at this
         console.log(this.context)
     }
 

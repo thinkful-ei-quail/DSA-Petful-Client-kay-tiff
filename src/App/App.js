@@ -121,10 +121,18 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     }
-
+    //look at this
     updateUserName = (name) => {
         this.setState({ userName: name})
     }
+
+    //look at this
+    displayOptions = () => {
+        if ( this.context.userName === this.context.queue[0]){
+            this.setState({ isFirst : true })
+        }
+    }
+
 
     render() {
         const value = {
