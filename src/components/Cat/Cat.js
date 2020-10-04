@@ -21,24 +21,10 @@ class Cat extends Component {
             headers: {
                 "Content-Type": "application/json",
             },
-            body: JSON.stringify({
-                person: `${this.state.name.value}`,
-            }),
+            body: JSON.stringify({type: 'cats'}),
         })
-            .then((res) => {
-                return res.json();
-            })
             .then(() => {
-                this.context.dequeue();
-                this.setState({
-                    redirect: "/home"
-                })
-            })
-            .catch((error) => {
-                this.setState({
-                    isError: true,
-                    errorMsg: error.message
-                })
+                fetch(`${config.API_ENDPOINT}pets/cat`)
             })
     }
 
@@ -48,7 +34,7 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               <div className='btn'><button onSubmit={(e) => this.adoptCat(e)}>Adopt A Cat</button></div>
+               <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt A Cat</button></div>
                <img src={cat.imageURL} alt='my headshot'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
