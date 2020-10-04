@@ -8,7 +8,12 @@ class Dog extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+            name: {
+                value: "",
+            },
+            isError: false,
+            errorMsg: "",
+            redirect: null,
         };
     }
 
@@ -27,6 +32,12 @@ class Dog extends Component {
             .then(() => {
                 fetch(`${config.API_ENDPOINT}pets/dog`)
             })
+            .then(() => {
+                this.context.enqueue();
+                this.setState({
+                    redirect: "/home"
+                })
+            })
     }
 
     render() {
@@ -35,13 +46,13 @@ class Dog extends Component {
 
         return(
             <div className='main-dog'>
-               <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt A Dog</button></div>
+               <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt {dog.name}</button></div>
                <img className='img' src={dog.imageURL} alt='my headshot'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>
                <p>Age: {dog.age}</p>
                <p>Breed: {dog.breed}</p>
-               <p>{dog.name}'s story: {dog.story}</p>
+               <p>{dog.name}'s Story: {dog.story}</p>
             </div>
         );
     }

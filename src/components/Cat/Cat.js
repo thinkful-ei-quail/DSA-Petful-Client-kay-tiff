@@ -3,14 +3,12 @@ import ApiContext from '../../ApiContext';
 import config from '../../config';
 
 class Cat extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
             
         };
     }
-
     static contextType = ApiContext;
 
     adoptCat = (e) => {
@@ -26,6 +24,12 @@ class Cat extends Component {
             .then(() => {
                 fetch(`${config.API_ENDPOINT}pets/cat`)
             })
+            .then(() => {
+                this.context.enqueue();
+                this.setState({
+                    redirect: "/home"
+                })
+            })
     }
 
     render() {
@@ -34,13 +38,13 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt A Cat</button></div>
+               <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt {cat.name}</button></div>
                <img src={cat.imageURL} alt='my headshot'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
                <p>Breed: {cat.breed}</p>
-               <p>{cat.name}'s story: {cat.story}</p>
+               <p>{this.context.splitName(`${cat.name}`)}'s Story: {cat.story}</p>
             </div>
         );
     }
