@@ -16,8 +16,8 @@ class Cat extends Component {
     adoptCat = (e) => {
         e.preventDefault()
         this.setState({})
-        fetch(`${config.API_ENDPOINT}people`, {
-            method: "POST",
+        fetch(`${config.API_ENDPOINT}pets/cat`, {
+            method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
@@ -29,7 +29,7 @@ class Cat extends Component {
                 return res.json();
             })
             .then(() => {
-                this.context.enqueue();
+                this.context.dequeue();
                 this.setState({
                     redirect: "/home"
                 })
