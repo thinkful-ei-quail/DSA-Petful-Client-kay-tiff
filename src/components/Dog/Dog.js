@@ -1,6 +1,7 @@
 
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import ApiContext from '../../ApiContext';
+import config from '../../config';
 
 class Dog extends Component {
 
@@ -13,11 +14,26 @@ class Dog extends Component {
 
     static contextType = ApiContext;
 
+    adoptDog = (e) => {
+        e.preventDefault()
+        this.setState({})
+        fetch(`${config.API_ENDPOINT}pets/dog`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({type: 'dog'}),
+        })
+            .then(() => {
+                fetch(`${config.API_ENDPOINT}pets/dog`)
+            })
+    }
+
     render() {
         const {dog =[] } = this.context;
         return(
             <div className='main-dog'>
-               <div className='btn'><button>Adopt A Dog</button></div>
+               <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt A Dog</button></div>
                <img className='img' src={dog.imageURL} alt='my headshot'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>
