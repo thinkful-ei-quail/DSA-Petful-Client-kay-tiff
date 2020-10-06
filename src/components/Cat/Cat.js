@@ -25,7 +25,7 @@ class Cat extends Component {
                 fetch(`${config.API_ENDPOINT}pets/cat`)
             })
             .then(() => {
-                this.context.enqueue();
+                this.context.dequeue();
                 this.setState({
                     redirect: "/home"
                 })
