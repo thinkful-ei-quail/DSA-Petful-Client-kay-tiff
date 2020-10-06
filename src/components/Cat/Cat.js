@@ -44,7 +44,11 @@ class Cat extends Component {
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
                <p>Breed: {cat.breed}</p>
+<<<<<<< HEAD
                <p>{this.context.splitName(`${cat.name}`)}'s Story: {cat.story}</p>
+=======
+               <p>{this.context.splitName(`${cat.name}`)}'s story: {cat.story}</p>
+>>>>>>> master
             </div>
         );
     }

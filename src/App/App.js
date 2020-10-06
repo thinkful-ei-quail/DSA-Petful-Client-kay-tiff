@@ -24,7 +24,7 @@ class App extends Component {
             isFirst: false,
             adoptCat : false,
             adoptDog : false,
-
+            userName : "",
         };
     }
  
@@ -33,7 +33,6 @@ class App extends Component {
         fetch(`${config.API_ENDPOINT}pets`)//all pets
         .then(response => response.json())
         .then((pets) => {
-          console.log('pets', pets)
           this.setState({pets });
         })
         .catch((error) => {
@@ -43,7 +42,6 @@ class App extends Component {
         fetch(`${config.API_ENDPOINT}pets/cat`)//first cat
         .then(response => response.json())
         .then((cat) => {
-          console.log('cat', cat)
           this.setState({cat });
         })
         .catch((error) => {
@@ -53,7 +51,6 @@ class App extends Component {
         fetch(`${config.API_ENDPOINT}pets/dog`)//first dog
         .then(response => response.json())
         .then((dog) => {
-          console.log('dog', dog)
           this.setState({dog });
         })
         .catch((error) => {
@@ -63,7 +60,6 @@ class App extends Component {
         fetch(`${config.API_ENDPOINT}people`)// people queue
         .then(response => response.json())
         .then((queue) => {
-          console.log('queue', queue)
           this.setState({queue});
         })
         .catch((error) => {
@@ -102,9 +98,6 @@ class App extends Component {
     //     });
     //   };
 
-    refreshPage = () => {
-        window.location.reload(false);
-    }
     onClickJoin = () => {
         if (this.state.inLine){
             console.log( 'You are already in line!')
@@ -128,6 +121,17 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     }
+    //look at this
+    updateUserName = (name) => {
+        this.setState({ userName: name})
+    }
+
+    //look at this
+    displayOptions = () => {
+        if ( this.context.userName === this.context.queue[0]){
+            this.setState({ isFirst : true })
+        }
+    }
 
 
     render() {
@@ -141,11 +145,13 @@ class App extends Component {
             isFirst: this.state.isFirst,
             adoptCat: this.state.adoptCat,
             adoptDog: this.state.adoptDog,
+            userName: this.state.userName,
             enqueue: this.enqueue,
             splitName: this.splitName,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
             refreshPage: this.refreshPage,
+            updateUserName: this.updateUserName,
         }
 
         return(

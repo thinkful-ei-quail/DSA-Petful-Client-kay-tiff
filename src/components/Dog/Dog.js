@@ -42,8 +42,6 @@ class Dog extends Component {
 
     render() {
         const {dog =[] } = this.context;
-        console.log('19',dog);
-
         return(
             <div className='main-dog'>
                <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt {dog.name}</button></div>
@@ -52,7 +50,11 @@ class Dog extends Component {
                <p>Gender: {dog.gender}</p>
                <p>Age: {dog.age}</p>
                <p>Breed: {dog.breed}</p>
+<<<<<<< HEAD
                <p>{dog.name}'s Story: {dog.story}</p>
+=======
+               <p>{this.context.splitName(`${dog.name}`)}'s story: {dog.story}</p>
+>>>>>>> master
             </div>
         );
     }
