@@ -13,7 +13,6 @@ class Cat extends Component {
 
     adoptCat = (e) => {
         e.preventDefault()
-        this.setState({})
         fetch(`${config.API_ENDPOINT}pets/cat`, {
             method: "DELETE",
             headers: {
@@ -24,11 +23,16 @@ class Cat extends Component {
             .then(() => {
                 fetch(`${config.API_ENDPOINT}pets/cat`)
             })
+        e.preventDefault()
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
             .then(() => {
-                this.context.dequeue();
-                this.setState({
-                    redirect: "/home"
-                })
+                window.location.reload()
             })
     }
 
@@ -44,11 +48,7 @@ class Cat extends Component {
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
                <p>Breed: {cat.breed}</p>
-<<<<<<< HEAD
                <p>{this.context.splitName(`${cat.name}`)}'s Story: {cat.story}</p>
-=======
-               <p>{this.context.splitName(`${cat.name}`)}'s story: {cat.story}</p>
->>>>>>> master
             </div>
         );
     }

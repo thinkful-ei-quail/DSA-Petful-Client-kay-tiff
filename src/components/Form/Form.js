@@ -47,7 +47,6 @@ class Form extends Component {
 
         if (this.validatePerson()) {
             //look at this
-            this.context.updateUserName(this.state.name);
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
                 headers: {
@@ -62,9 +61,7 @@ class Form extends Component {
                 })
                 .then(() => {
                     this.context.enqueue();
-                    this.setState({
-                        redirect: "/home"
-                    })
+                    sessionStorage.setItem('person', `${this.state.name.value}`);
                 })
                 .catch((error) => {
                     this.setState({
@@ -82,10 +79,10 @@ class Form extends Component {
     }
 
     timerFunc = () => {
-        setInterval(this.addToQueue, 5000)
+        setInterval(this.addNameToQueue, 5000)
     }
 
-    addToQueue = () => {
+    addNameToQueue = () => {
         // if submit button on form is clicked
         let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
         let timerFunc = setInterval(() => {

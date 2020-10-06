@@ -24,7 +24,6 @@ class App extends Component {
             isFirst: false,
             adoptCat : false,
             adoptDog : false,
-            userName : "",
         };
     }
  
@@ -66,6 +65,7 @@ class App extends Component {
           console.error(error.message );
         });
     }
+
     renderRoutes(){
         return(
             <>
@@ -92,19 +92,15 @@ class App extends Component {
         }
         return result
     }
-    // handleAdoptPet = (pet_id) => {
-    //     this.setState({
-    //       pets: this.state.pets.filter((pet) => pet.pet_id !== pet_id),
-    //     });
-    //   };
 
     onClickJoin = () => {
         if (this.state.inLine){
-            console.log( 'You are already in line!')
+            alert( 'You are already in line!')
         }else{
         this.setState({ isAdding : true})
         }
     }
+
     onClickSubmit = () => {
         this.setState({ isAdding : false, inLine: true})
     }
@@ -121,18 +117,12 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     }
-    //look at this
-    updateUserName = (name) => {
-        this.setState({ userName: name})
-    }
 
-    //look at this
     displayOptions = () => {
-        if ( this.context.userName === this.context.queue[0]){
+        if (sessionStorage.person === this.context.queue[0]){
             this.setState({ isFirst : true })
         }
     }
-
 
     render() {
         const value = {
@@ -151,7 +141,6 @@ class App extends Component {
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
             refreshPage: this.refreshPage,
-            updateUserName: this.updateUserName,
         }
 
         return(

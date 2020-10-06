@@ -21,7 +21,6 @@ class Dog extends Component {
 
     adoptDog = (e) => {
         e.preventDefault()
-        this.setState({})
         fetch(`${config.API_ENDPOINT}pets/dog`, {
             method: "DELETE",
             headers: {
@@ -32,11 +31,16 @@ class Dog extends Component {
             .then(() => {
                 fetch(`${config.API_ENDPOINT}pets/dog`)
             })
+        e.preventDefault()
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
             .then(() => {
-                this.context.enqueue();
-                this.setState({
-                    redirect: "/home"
-                })
+                window.location.reload()
             })
     }
 
@@ -50,11 +54,7 @@ class Dog extends Component {
                <p>Gender: {dog.gender}</p>
                <p>Age: {dog.age}</p>
                <p>Breed: {dog.breed}</p>
-<<<<<<< HEAD
                <p>{dog.name}'s Story: {dog.story}</p>
-=======
-               <p>{this.context.splitName(`${dog.name}`)}'s story: {dog.story}</p>
->>>>>>> master
             </div>
         );
     }
