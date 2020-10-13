@@ -10,6 +10,5 @@ export default React.createContext({
   splitName: () => {},
   onClickJoin: () => {},
   inLine: '',
-  isFirst: '',
-  userName: '',
+  isFirst: ''
 })
