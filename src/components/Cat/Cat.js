@@ -6,7 +6,7 @@ class Cat extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            
+
         };
     }
     static contextType = ApiContext;
@@ -20,9 +20,10 @@ class Cat extends Component {
             },
             body: JSON.stringify({type: 'cats'}),
         })
-            .then(() => {
-                fetch(`${config.API_ENDPOINT}pets/cat`)
-            })
+        .then(() => {
+            fetch(`${config.API_ENDPOINT}pets/cat`)
+        })
+
         e.preventDefault()
         fetch(`${config.API_ENDPOINT}people`, {
             method: "DELETE",
@@ -31,9 +32,17 @@ class Cat extends Component {
             },
             body: JSON.stringify(),
         })
-            .then(() => {
-                window.location.reload()
-            })
+        .then(() => {
+            window.location.reload()
+        })
+    }
+
+    toggleAdoptBtn = (cat) => {
+        if (this.context.userName === this.context.queue[0]){
+            return (
+                <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt {cat.name}</button></div>
+            )
+        }
     }
 
     render() {
@@ -42,14 +51,13 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               
                <img src={cat.imageURL} alt='my headshot'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
                <p>Breed: {cat.breed}</p>
                <p>{this.context.splitName(`${cat.name}`)}'s Story: {cat.story}</p>
-               <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt {cat.name}</button></div>
+               {this.toggleAdoptBtn(cat)}
             </div>
         );
     }
