@@ -23,14 +23,14 @@ class Form extends Component {
     static defaultProps = {
         viewtype: false,
         match: {
-          params: {},
+            params: {},
         },
     };
 
 
     validatePerson = () => {
-        const name = this.state.name.value;
-        if(!name || name.length < 1 || name === ' '){
+        const name = this.state.name;
+        if (!name || name.length < 1 || name === ' ') {
             this.setState({
                 isError: true,
                 errorMsg: "Please submit a valid name.",
@@ -40,24 +40,13 @@ class Form extends Component {
         this.context.onClickSubmit();
         return true;
     };
-    
-    // fetch(`${config.API_ENDPOINT}people`)// people queue
-    // .then(response => response.json())
-    // .then((queue) => {
-    //   console.log('queue', queue)
-    //   this.setState({queue});
-    // })
-    // .catch((error) => {
-    //   console.error(error.message );
-    // });
 
     submitPerson = (e) => {
         e.preventDefault();
-        this.setState({isError: false, errorMsg: ""});
+        this.setState({ isError: false, errorMsg: "" });
 
         if (this.validatePerson()) {
-            //look at this
-            this.context.updateUserName(this.state.name.value);
+            //this.runDemo();
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
                 headers: {
@@ -67,20 +56,16 @@ class Form extends Component {
                     person: `${this.state.name.value}`,
                 }),
             })
-            .then((res)=> { 
+            .then((res) => {
                 return res.json();
             })
-            .then((response)=>{
-                
-                this.context.enqueue();
-                this.setState({
-                    redirect: "/home"
+            .then(() => {
+                this.context.enqueue(this.state.name.value);
                 })
-            })
             .catch((error) => {
                 this.setState({
-                  isError: true,
-                  errorMsg: error.message
+                    isError: true,
+                    errorMsg: error.message
                 })
             })
         }
@@ -89,11 +74,36 @@ class Form extends Component {
     }
 
     updateName = (name) => {
-        this.setState({ name: { value: name }})
+        this.setState({ name: { value: name } })
     }
 
-    render() {
+    timerFunc = () => {
+        setInterval(this.runDemo, 5000)
+    }
+
+    runDemo = () => {
+        let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
+        let timerFunc = setInterval(() => {
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                person: adoptees[Math.floor((Math.random() * 10))],
+            }),
+        })
         
+        .then(() => {
+            fetch(`${config.API_ENDPOINT}people`)
+        })
+        if (this.context.queue.length ===   5) {
+            clearInterval(timerFunc)
+        }
+    }, 5000)
+}
+
+    render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />;
         }
@@ -101,19 +111,19 @@ class Form extends Component {
         const { className, ...otherProps } = this.props;
         this.history = otherProps.history;
 
-        return(
+        return (
             <div className='form'>
-               <h1>Sign Up</h1>
-               <form onSubmit={(e) => this.submitPerson(e)}>
-                   <label className='form-row'>
-                        Name: 
+                <h1>Sign Up</h1>
+                <form onSubmit={(e) => this.submitPerson(e)}>
+                    <label className='form-row'>
+                        Name:
                         <input
                             type='text'
                             name='name'
                             onChange={(e) => this.updateName(e.target.value)}
                         />
-                   </label>
-                   <div className='form-row'><input type="submit" name="submit"/></div>
+                    </label>
+                    <div className='form-row'><input type="submit" name="submit" /></div>
                 </form>
             </div>
         );
