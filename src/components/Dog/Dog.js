@@ -24,7 +24,7 @@ class Dog extends Component {
         fetch(`${config.API_ENDPOINT}pets/dog`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "applidogion/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({type: 'dog'}),
         })
@@ -36,12 +36,12 @@ class Dog extends Component {
         fetch(`${config.API_ENDPOINT}people`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "applidogion/json",
+                "Content-Type": "application/json",
             },
             body: JSON.stringify(),
         })
         .then(() => {
-            window.lodogion.reload()
+            window.location.reload()
         })
     }
     

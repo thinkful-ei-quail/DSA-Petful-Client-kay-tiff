@@ -56,7 +56,7 @@ class Cat extends Component {
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
                <p>Breed: {cat.breed}</p>
-               <p>{this.context.splitName(`${cat.name}`)}'s Story: {cat.story}</p>
+               <p>{cat.name}'s Story: {cat.story}</p>
                {this.toggleAdoptBtn(cat)}
             </div>
         );

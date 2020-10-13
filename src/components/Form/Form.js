@@ -46,7 +46,6 @@ class Form extends Component {
         this.setState({ isError: false, errorMsg: "" });
 
         if (this.validatePerson()) {
-            //this.runDemo();
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
                 headers: {
@@ -61,7 +60,10 @@ class Form extends Component {
             })
             .then(() => {
                 this.context.enqueue(this.state.name.value);
-                })
+            })
+            // .then(() =>{
+            //     this.runDemo();
+            // })
             .catch((error) => {
                 this.setState({
                     isError: true,
@@ -75,31 +77,44 @@ class Form extends Component {
         this.setState({ name: { value: name } })
     }
 
-    timerFunc = () => {
-        setInterval(this.runDemo, 5000)
-    }
-
     runDemo = () => {
-        let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
-        let timerFunc = setInterval(() => {
-        fetch(`${config.API_ENDPOINT}people`, {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                person: adoptees[Math.floor((Math.random() * 10))],
-            }),
-        })
+        if (this.context.userName === this.context.queue[0]){
+            let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
+            let timerFunc = setInterval(() => {
         
-        .then(() => {
-            fetch(`${config.API_ENDPOINT}people`)
-        })
-        if (this.context.queue.length ===   5) {
-            clearInterval(timerFunc)
+                fetch(`${config.API_ENDPOINT}people`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({
+                        person: adoptees[Math.floor((Math.random() * 10))],
+                    }),
+                })
+                
+                .then(() => {
+                    window.location.reload()
+                })
+                if (this.context.queue.length >=   5) {
+                    clearInterval(timerFunc)
+                }
+            }, 5000)
+            return
+        }else if (this.context.userName !== this.context.queue[0]){
+            fetch(`${config.API_ENDPOINT}people`,{
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify()
+            })
+            .then(()=>{
+                window.location.reload()
+            })
+            return this.runDemo()
         }
-    }, 5000)
-}
+
+    }
 
     render() {
         if (this.state.redirect) {
@@ -110,7 +125,9 @@ class Form extends Component {
         this.history = otherProps.history;
 
         return (
+
             <div className='form'>
+                {/* {this.runDemo} */}
                 <h1>Sign Up</h1>
                 <form onSubmit={(e) => this.submitPerson(e)}>
                     <label className='form-row'>
