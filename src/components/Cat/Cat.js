@@ -51,7 +51,7 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               <img src={cat.imageURL} alt='my headshot'/>
+               <img src={cat.imageURL} alt='cat photo'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>
