@@ -1,0 +1,19 @@
+.container{
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+  
+.container * {
+    box-sizing: border-box;
+}
+
+.cat-column, .dog-column, .queue{
+    padding: 20px;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+}
+  
