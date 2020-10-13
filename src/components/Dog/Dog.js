@@ -24,7 +24,7 @@ class Dog extends Component {
         fetch(`${config.API_ENDPOINT}pets/dog`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "applidogion/json",
             },
             body: JSON.stringify({type: 'dog'}),
         })
@@ -36,13 +36,21 @@ class Dog extends Component {
         fetch(`${config.API_ENDPOINT}people`, {
             method: "DELETE",
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": "applidogion/json",
             },
             body: JSON.stringify(),
         })
         .then(() => {
-            window.location.reload()
+            window.lodogion.reload()
         })
+    }
+    
+    toggleAdoptBtn = (dog) => {
+        if (this.context.userName === this.context.queue[0]){
+            return (
+                <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt {dog.name}</button></div>
+            )
+        }
     }
     render() {
         const {dog =[] } = this.context;
@@ -54,7 +62,7 @@ class Dog extends Component {
                <p>Age: {dog.age}</p>
                <p>Breed: {dog.breed}</p>
                <p>{dog.name}'s Story: {dog.story}</p>
-               <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt {dog.name}</button></div>
+               {this.toggleAdoptBtn(dog)}
             </div>
         );
     }
