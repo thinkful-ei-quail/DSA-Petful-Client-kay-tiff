@@ -29,11 +29,7 @@ class Form extends Component {
 
 
     validatePerson = () => {
-<<<<<<< HEAD
         const name = this.state.name;
-=======
-        const name = this.state.name.value;
->>>>>>> 132bc647807df0b3f75d1278df7d7db94f4e2a6e
         if (!name || name.length < 1 || name === ' ') {
             this.setState({
                 isError: true,
@@ -50,11 +46,7 @@ class Form extends Component {
         this.setState({ isError: false, errorMsg: "" });
 
         if (this.validatePerson()) {
-<<<<<<< HEAD
             //this.runDemo();
-=======
-            //look at this
->>>>>>> 132bc647807df0b3f75d1278df7d7db94f4e2a6e
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
                 headers: {
@@ -64,7 +56,6 @@ class Form extends Component {
                     person: `${this.state.name.value}`,
                 }),
             })
-<<<<<<< HEAD
             .then((res) => {
                 return res.json();
             })
@@ -75,29 +66,13 @@ class Form extends Component {
                 this.setState({
                     isError: true,
                     errorMsg: error.message
-=======
-                .then((res) => {
-                    return res.json();
                 })
-                .then(() => {
-                    this.context.enqueue();
-                    sessionStorage.setItem('person', `${this.state.name.value}`);
-                })
-                .catch((error) => {
-                    this.setState({
-                        isError: true,
-                        errorMsg: error.message
-                    })
->>>>>>> 132bc647807df0b3f75d1278df7d7db94f4e2a6e
-                })
+            })
         }
-        //look at this
-        console.log(this.context)
     }
 
     updateName = (name) => {
         this.setState({ name: { value: name } })
-<<<<<<< HEAD
     }
 
     timerFunc = () => {
@@ -105,16 +80,6 @@ class Form extends Component {
     }
 
     runDemo = () => {
-=======
-    }
-
-    timerFunc = () => {
-        setInterval(this.addNameToQueue, 5000)
-    }
-
-    addNameToQueue = () => {
-        // if submit button on form is clicked
->>>>>>> 132bc647807df0b3f75d1278df7d7db94f4e2a6e
         let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
         let timerFunc = setInterval(() => {
         fetch(`${config.API_ENDPOINT}people`, {
@@ -126,7 +91,6 @@ class Form extends Component {
                 person: adoptees[Math.floor((Math.random() * 10))],
             }),
         })
-<<<<<<< HEAD
         
         .then(() => {
             fetch(`${config.API_ENDPOINT}people`)
@@ -138,20 +102,6 @@ class Form extends Component {
 }
 
     render() {
-=======
-            .then(() => {
-                fetch(`${config.API_ENDPOINT}people`)
-            })
-            if (this.state.people.length === 5) {
-                clearInterval(timerFunc)
-            }
-    }, 5000)
-}
-
-
-    render() {
-
->>>>>>> 132bc647807df0b3f75d1278df7d7db94f4e2a6e
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />;
         }
