@@ -65,8 +65,12 @@ class App extends Component {
         .catch((error) => {
           console.error(error.message );
         });
-    }
 
+
+    }
+    componentWillUnmount() {
+      clearInterval(this.interval);
+    }
     renderRoutes(){
         return(
             <>
@@ -126,6 +130,69 @@ class App extends Component {
         }
     }
 
+    handleAdoptCat = (e) => {
+      e.preventDefault()
+      fetch(`${config.API_ENDPOINT}pets/cat`, {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({type: 'cats'}),
+      })
+      .then(() => {
+          fetch(`${config.API_ENDPOINT}pets/cat`)
+      })
+
+      e.preventDefault()
+      fetch(`${config.API_ENDPOINT}people`, {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),
+      })
+      .then(() => {
+          window.location.reload()
+      })
+  }
+  handleAdoptDog = (e) => {
+    e.preventDefault()
+    fetch(`${config.API_ENDPOINT}pets/dog`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({type: 'dog'}),
+    })
+    .then(() => {
+        fetch(`${config.API_ENDPOINT}pets/dog`)
+    })
+    
+    e.preventDefault()
+    fetch(`${config.API_ENDPOINT}people`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify(),
+    })
+    .then(() => {
+        window.location.reload()
+    })
+}
+  cycleList = () => {
+
+    if(this.context.userName !== this.context.queue[0]){
+      let coin = Math.floor(Math.random() * 100)
+      if(coin < 50){
+        this.handleAdoptCat()
+      }
+      else {
+        this.handleAdoptDog()
+      }
+    }
+  }
+
     render() {
         const value = {
             pets: this.state.pets,
@@ -142,6 +209,9 @@ class App extends Component {
             splitName: this.splitName,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
+            handleAdoptCat: this.handleAdoptCat,
+            handleAdoptDog: this.handleAdoptDog,
+            cycleList: this.cycleList,
             refreshPage: this.refreshPage,
         }
 

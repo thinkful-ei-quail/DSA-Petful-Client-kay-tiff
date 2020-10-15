@@ -19,36 +19,11 @@ class Dog extends Component {
 
     static contextType = ApiContext;
 
-    adoptDog = (e) => {
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}pets/dog`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({type: 'dog'}),
-        })
-        .then(() => {
-            fetch(`${config.API_ENDPOINT}pets/dog`)
-        })
-        
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}people`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(),
-        })
-        .then(() => {
-            window.location.reload()
-        })
-    }
     
     toggleAdoptBtn = (dog) => {
         if (this.context.userName === this.context.queue[0]){
             return (
-                <div className='btn'><button onClick={(e) => this.adoptDog(e)}>Adopt {dog.name}</button></div>
+                <div className='btn'><button onClick={(e) => this.context.handleAdoptDog(e)}>Adopt {dog.name}</button></div>
             )
         }
     }

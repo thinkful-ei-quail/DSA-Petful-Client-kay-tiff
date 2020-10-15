@@ -11,36 +11,10 @@ class Cat extends Component {
     }
     static contextType = ApiContext;
 
-    adoptCat = (e) => {
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}pets/cat`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({type: 'cats'}),
-        })
-        .then(() => {
-            fetch(`${config.API_ENDPOINT}pets/cat`)
-        })
-
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}people`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(),
-        })
-        .then(() => {
-            window.location.reload()
-        })
-    }
-
     toggleAdoptBtn = (cat) => {
         if (this.context.userName === this.context.queue[0]){
             return (
-                <div className='btn'><button onClick={(e) => this.adoptCat(e)}>Adopt {cat.name}</button></div>
+                <div className='btn'><button onClick={(e) => this.context.handleAdoptCat(e)}>Adopt {cat.name}</button></div>
             )
         }
     }

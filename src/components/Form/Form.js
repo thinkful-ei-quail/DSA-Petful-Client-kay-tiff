@@ -118,37 +118,6 @@ class Form extends Component {
                 }),
             }).then(() =>{
                 fetch(`${config.API_ENDPOINT}people`)
-            // }).then(()=> {
-            //     if (this.state.name.value !== this.context.queue[0]){
-            //         fetch(`${config.API_ENDPOINT}pets/dog`, {
-            //             method: "DELETE",
-            //             headers: {
-            //                 "Content-Type": "application/json",
-            //             },
-            //             body: JSON.stringify({type: 'dog'}),
-            //         })
-            //         fetch(`${config.API_ENDPOINT}people`, {
-            //             method: "DELETE",
-            //             headers: {
-            //                 "Content-Type": "application/json",
-            //             },
-            //             body: JSON.stringify(),
-            //         }).then(()=>{
-            //             if (this.context.queue.length < 5){
-            //                 fetch(`${config.API_ENDPOINT}people`, {
-            //                     method: "POST",
-            //                     headers: {
-            //                         "Content-Type": "application/json",
-            //                     },
-            //                     body: JSON.stringify({
-            //                         person: adoptees[Math.floor((Math.random() * 10))],
-            //                     }),
-            //                 }).then(() =>{
-            //                     fetch(`${config.API_ENDPOINT}people`)
-            //                 })
-            //             }
-            //         })
-            //     } 
             }).then(() => {
                 clearTimeout(this.runDemo)
             })
@@ -162,12 +131,12 @@ class Form extends Component {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />;
         }
-
+        
         const { className, ...otherProps } = this.props;
         this.history = otherProps.history;
 
         return (
-
+            
             <div className='form'>
                 {/* {this.runDemo} */}
                 <h1>Sign Up</h1>
@@ -178,7 +147,7 @@ class Form extends Component {
                             type='text'
                             name='name'
                             onChange={(e) => this.updateName(e.target.value)}
-                        />
+                            />
                     </label>
                     <div className='form-row'><input type="submit" name="submit" /></div>
                 </form>
@@ -188,3 +157,34 @@ class Form extends Component {
 }
 
 export default Form
+                        // }).then(()=> {
+                        //     if (this.state.name.value !== this.context.queue[0]){
+                        //         fetch(`${config.API_ENDPOINT}pets/dog`, {
+                        //             method: "DELETE",
+                        //             headers: {
+                        //                 "Content-Type": "application/json",
+                        //             },
+                        //             body: JSON.stringify({type: 'dog'}),
+                        //         })
+                        //         fetch(`${config.API_ENDPOINT}people`, {
+                        //             method: "DELETE",
+                        //             headers: {
+                        //                 "Content-Type": "application/json",
+                        //             },
+                        //             body: JSON.stringify(),
+                        //         }).then(()=>{
+                        //             if (this.context.queue.length < 5){
+                        //                 fetch(`${config.API_ENDPOINT}people`, {
+                        //                     method: "POST",
+                        //                     headers: {
+                        //                         "Content-Type": "application/json",
+                        //                     },
+                        //                     body: JSON.stringify({
+                        //                         person: adoptees[Math.floor((Math.random() * 10))],
+                        //                     }),
+                        //                 }).then(() =>{
+                        //                     fetch(`${config.API_ENDPOINT}people`)
+                        //                 })
+                        //             }
+                        //         })
+                        //     } 
