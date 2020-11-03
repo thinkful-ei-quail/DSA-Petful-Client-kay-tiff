@@ -15,6 +15,7 @@ class App extends Component {
     constructor(props) {
         super(props)
         this.state = {
+            people: [],
             pets:[],
             dog: [],
             cat: [],
@@ -25,6 +26,9 @@ class App extends Component {
             isFirst: false,
             adoptCat : false,
             adoptDog : false,
+            name: {
+              value: "",
+          },
         };
     }
  
@@ -82,6 +86,7 @@ class App extends Component {
             </>
         )
     }
+
     splitName(name){
         
         let result= name;
@@ -92,6 +97,52 @@ class App extends Component {
             }
         }
         return result
+    }
+    
+    timerFunc = () => {
+      setInterval(this.addNameToQueue, 5000)
+  }
+
+  addNameToQueue = () => {
+      // if submit button on form is clicked
+      let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
+      let timerFunc = setInterval(() => {
+      fetch(`${config.API_ENDPOINT}people`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+              person: adoptees[Math.floor((Math.random() * 10))],
+          }),
+      })
+          .then(() => {
+              fetch(`${config.API_ENDPOINT}people`)
+          })
+          if (this.state.people.length > 5) {
+              clearInterval(timerFunc)
+          }
+  }, 5000)
+}
+    adoptFromQueue = () => {
+        fetch(`${config.API_ENDPOINT}pets/cat`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({type: 'cats'}),
+        })
+        .then(() => {
+            fetch(`${config.API_ENDPOINT}pets/cat`)
+        })
+        
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
     }
 
     onClickJoin = () => {
@@ -104,6 +155,8 @@ class App extends Component {
 
     onClickSubmit = () => {
         this.setState({ isAdding : false, inLine: true})
+        this.addNameToQueue()
+        this.adoptFromQueue()
     }
 
     enqueue = (userName) => {

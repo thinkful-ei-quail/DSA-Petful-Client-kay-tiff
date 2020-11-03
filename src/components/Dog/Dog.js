@@ -40,9 +40,6 @@ class Dog extends Component {
             },
             body: JSON.stringify(),
         })
-        .then(() => {
-            window.location.reload()
-        })
     }
     
     toggleAdoptBtn = (dog) => {
