@@ -11,8 +11,13 @@ class Cat extends Component {
     }
     static contextType = ApiContext;
 
+    confirmation = () => {
+        window.confirm("Are you sure?")
+    }
+
     adoptCat = (e) => {
-        e.preventDefault()
+        this.confirmation()
+        // e.preventDefault()
         fetch(`${config.API_ENDPOINT}pets/cat`, {
             method: "DELETE",
             headers: {
