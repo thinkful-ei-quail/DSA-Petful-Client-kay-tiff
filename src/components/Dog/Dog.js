@@ -65,6 +65,18 @@ class Dog extends Component {
             )
         }
     }
+
+    doubleCheck = () => {
+        if (this.adoptDog()) {
+            return (
+                <div className='Adopt'>
+                <h2> Are you sure?</h2>
+                <button>Yes</button>
+                <button>No</button>
+                </div>
+            )
+        }
+    }
     render() {
         const {dog =[] } = this.context;
         return(
