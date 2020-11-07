@@ -4,7 +4,6 @@ import ApiContext from '../../ApiContext';
 import config from '../../config';
 
 class Dog extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -15,68 +14,45 @@ class Dog extends Component {
             errorMsg: "",
             redirect: null,
         };
-    }
-
+    };
     static contextType = ApiContext;
-
-    confirmation = () => {
-        window.confirm("Are you sure?")
-    }
-
-    adoptDog = (e) => {
-        this.confirmation()
-        // e.preventDefault()
+    confirmAdopt = (e) => {
+        let confirmed = window.confirm("Are you sure?");
+        if (confirmed){
+            return this.handleAdoptDog(e)
+        }
+    };
+    handleAdoptDog = (e) => {
+        e.preventDefault();
         fetch(`${config.API_ENDPOINT}pets/dog`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({type: 'dog'}),
-        })
-        .then(() => {
+        }).then(() => {
             fetch(`${config.API_ENDPOINT}pets/dog`)
-        })
-        e.preventDefault()
+        });
+        
+        e.preventDefault();
         fetch(`${config.API_ENDPOINT}people`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(),
-        })
-    }
-    
+        }).then(() => {
+            window.location.reload()
+        });
+        return true;
+    };
     toggleAdoptBtn = (dog) => {
         if (this.context.userName === this.context.queue[0]||this.context.isFirst){
             return (
-                <div className='btn'><button onClick={(e) => this.context.handleAdoptDog(e)}>Adopt {dog.name}</button></div>
-            )
-        }
-    }
-
-    doubleCheck = () => {
-        if (this.adoptDog()) {
-            return (
-                <div className='Adopt'>
-                <h2> Are you sure?</h2>
-                <button>Yes</button>
-                <button>No</button>
-                </div>
-            )
-        }
-    }
-
-    doubleCheck = () => {
-        if (this.adoptDog()) {
-            return (
-                <div className='Adopt'>
-                <h2> Are you sure?</h2>
-                <button>Yes</button>
-                <button>No</button>
-                </div>
-            )
-        }
-    }
+                <div className='btn'><button onClick={(e)=>this.confirmAdopt(e)}>Adopt {dog.name}</button></div>
+            );
+        };
+    };
     render() {
         const {dog =[] } = this.context;
         return(
@@ -90,7 +66,7 @@ class Dog extends Component {
                {this.toggleAdoptBtn(dog)}
             </div>
         );
-    }
-}
+    };
+};
 
-export default Dog
+export default Dog;

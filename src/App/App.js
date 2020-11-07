@@ -1,17 +1,11 @@
-import React, { Component } from 'react'
-
+import React, { Component } from 'react';
 import './App.css';
-
 import {Route} from 'react-router-dom';
-
 import ApiContext from "../ApiContext";
 import config from "../config";
 import About from "../pages/About/About";
 import HomePage from "../pages/HomePage/HomePage";
-
-
 class App extends Component {
-
     constructor(props) {
         super(props)
         this.state = {
@@ -29,10 +23,8 @@ class App extends Component {
               value: "",
           },
         };
-    }
- 
+    };
     componentDidMount() {
-
         fetch(`${config.API_ENDPOINT}pets`)//all pets
         .then(response => response.json())
         .then((pets) => {
@@ -68,9 +60,7 @@ class App extends Component {
         .catch((error) => {
           console.error(error.message );
         });
-
-
-    }
+    };
     renderRoutes(){
         return(
             <>
@@ -85,21 +75,14 @@ class App extends Component {
 
             </>
         )
-    }
+    };
     onClickJoin = () => {
         if (this.state.inLine){
-            alert( 'You are already in line!')
+            alert( 'You are already in line!');
         }else{
-        this.setState({ isAdding : true})
-        }
-    }
-    onClickSubmit = () => {
-        this.setState({ isAdding : false, inLine: true})
-    }
-    toggleFirst = () => {
-        this.setState({isFirst: true})
-        return true
-    }
+        this.setState({ isAdding : true});
+        };
+    };
     enqueue = (userName) => {
         fetch(`${config.API_ENDPOINT}people`)
         .then((res) => res.json())
@@ -108,82 +91,25 @@ class App extends Component {
             userName: userName,
             queue,
           });
-        })
-        .catch((e) => {
+        }).catch((e) => {
           console.log("Error loading queue data");
         });
-    }
-    displayOptions = () => {
-        if (sessionStorage.person === this.context.queue[0]){
-            this.setState({ isFirst : true })
-        }
-    }
-    handleAdoptCat = (e) => {
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}pets/cat`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({type: 'cats'}),
-        })
-        .then(() => {
-            fetch(`${config.API_ENDPOINT}pets/cat`)
-        })
-
-      e.preventDefault()
-      fetch(`${config.API_ENDPOINT}people`, {
-          method: "DELETE",
-          headers: {
-              "Content-Type": "application/json",
-          },
-          body: JSON.stringify(),
-      })
-      .then(() => {
-          window.location.reload()
-      })
-    }
-  handleAdoptDog = (e) => {
-    e.preventDefault()
-    fetch(`${config.API_ENDPOINT}pets/dog`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify({type: 'dog'}),
-    })
-    .then(() => {
-        fetch(`${config.API_ENDPOINT}pets/dog`)
-    })
-    
-    e.preventDefault()
-    fetch(`${config.API_ENDPOINT}people`, {
-        method: "DELETE",
-        headers: {
-            "Content-Type": "application/json",
-        },
-        body: JSON.stringify(),
-    })
-    .then(() => {
-        window.location.reload()
-    })
-    }
+    };
     runDemo = (name,i,l) => { setTimeout(() => {
-
         if (!l){//define variables
-            i = 0
-            l = this.state.queue.length
-            this.onClickSubmit()
-            return this.runDemo(name,i,l)
-        }
-        if (name === this.state.queue[i] && l === 5){//set base case
-            clearTimeout(this.runDemo)
-            return this.toggleFirst()
-        } 
-        if (name !== this.state.queue[i] && l > 1 ){//run demo adopt
-            i++
-            l--
-            let coin = Math.floor(Math.random() * 100)
+            i = 0;
+            l = this.state.queue.length;
+            this.setState({ isAdding : false, inLine: true});
+            clearTimeout(this.runDemo);
+            return this.runDemo(name,i,l);
+        }else if (name === this.state.queue[i] && l === 5){//set base case
+            this.setState({isFirst: true});
+            clearTimeout(this.runDemo);
+            return;
+        } else if (name !== this.state.queue[i] && l > 1 ){//run demo adopt
+            i++;
+            l--;
+            let coin = Math.floor(Math.random() * 100);
             if(coin < 50){
                 fetch(`${config.API_ENDPOINT}pets/cat`, {
                     method: "DELETE",
@@ -192,8 +118,7 @@ class App extends Component {
                     },
                     body: JSON.stringify({type: 'cat'}),
                 })
-            }
-            else {
+            }else{
                 fetch(`${config.API_ENDPOINT}pets/dog`, {
                     method: "DELETE",
                     headers: {
@@ -201,7 +126,7 @@ class App extends Component {
                     },
                     body: JSON.stringify({type: 'dog'}),
                 })
-            }
+            };
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "DELETE",
                 headers: {
@@ -209,16 +134,17 @@ class App extends Component {
                 },
                 body: JSON.stringify(),
             }).then(() => {
-                clearTimeout(this.runDemo)
-            })
+                clearTimeout(this.runDemo);
+            });
             fetch(`${config.API_ENDPOINT}people`)// people queue
-            .then(response => response.json())
-            .then((queue) => {
-              this.setState({queue});
+            .then(response => 
+                response.json()
+            ).then((queue) => {
+                this.setState({queue});
             }).then(() => {
                 return this.runDemo(name,i,l)
-            })  
-        }
+            }); 
+        };
         if ( l < 5 && name === this.state.queue[i] ){//run demo post
             l++
             let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
@@ -255,15 +181,9 @@ class App extends Component {
             adoptCat: this.state.adoptCat,
             adoptDog: this.state.adoptDog,
             userName: this.state.userName,
-            toggleFirst: this.toggleFirst,
             enqueue: this.enqueue,
             runDemo: this.runDemo,
             onClickJoin: this.onClickJoin,
-            onClickSubmit: this.onClickSubmit,
-            handleAdoptCat: this.handleAdoptCat,
-            handleAdoptDog: this.handleAdoptDog,
-            cycleList: this.cycleList,
-            refreshPage: this.refreshPage,
         }
 
         return(

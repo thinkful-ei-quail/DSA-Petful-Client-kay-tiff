@@ -14,10 +14,14 @@ class Cat extends Component {
     confirmation = () => {
         window.confirm("Are you sure?")
     }
-
-    adoptCat = (e) => {
-        this.confirmation()
-        // e.preventDefault()
+    confirmAdopt = (e) => {
+        let confirmed = window.confirm("Are you sure?");
+        if (confirmed){
+            return this.handleAdoptCat(e)
+        }
+    };
+    handleAdoptCat = (e) => {
+        e.preventDefault()
         fetch(`${config.API_ENDPOINT}pets/cat`, {
             method: "DELETE",
             headers: {
@@ -29,20 +33,23 @@ class Cat extends Component {
             fetch(`${config.API_ENDPOINT}pets/cat`)
         })
 
-        e.preventDefault()
-        fetch(`${config.API_ENDPOINT}people`, {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify(),
-        })
+      e.preventDefault()
+      fetch(`${config.API_ENDPOINT}people`, {
+          method: "DELETE",
+          headers: {
+              "Content-Type": "application/json",
+          },
+          body: JSON.stringify(),
+      })
+      .then(() => {
+          window.location.reload()
+      })
     }
 
     toggleAdoptBtn = (cat) => {
         if (this.context.userName === this.context.queue[0]||this.context.isFirst){
             return (
-                <div className='btn'><button onClick={(e) => this.context.handleAdoptCat(e)}>Adopt {cat.name}</button></div>
+                <div className='btn'><button onClick={(e) => this.confirmAdopt(e)}>Adopt {cat.name}</button></div>
             )
         }
     }

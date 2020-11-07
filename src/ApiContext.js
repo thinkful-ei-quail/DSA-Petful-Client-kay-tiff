@@ -7,10 +7,11 @@ export default React.createContext({
   queue: [],
   runDemo: () => {},
   enqueue: () => {},
-  toggleFirst: ()=> {},
   dequeue: () => {},
   onClickSubmit: () => {},
   onClickJoin: () => {},
-  inLine: '',
+  removeUser: () => {},
+  userName: null,
+  inLine: null,
   isFirst: ''
 })
