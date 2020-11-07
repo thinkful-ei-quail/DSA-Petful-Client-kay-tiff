@@ -1,12 +1,9 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './Form.css'
-
+import './Form.css';
 import config from '../../config';
 import ApiContext from '../../ApiContext';
-
 class Form extends Component {
-    
     constructor(props) {
         super(props)
         this.state = {
@@ -17,33 +14,28 @@ class Form extends Component {
             errorMsg: "",
             redirect: null,
         };
-    }
+    };
     static contextType = ApiContext;
-
     static defaultProps = {
         viewtype: false,
         match: {
             params: {},
         },
     };
-
-
     validatePerson = () => {
         const name = this.state.name;
         if (!name || name.length < 1 || name === ' ') {
             this.setState({
                 isError: true,
                 errorMsg: "Please submit a valid name.",
-            })
+            });
             return false;
         }
         return true;
     };
-
     submitPerson = (e) => {
         e.preventDefault();
         this.setState({ isError: false, errorMsg: "" });
-
         if (this.validatePerson()) {
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
@@ -53,39 +45,30 @@ class Form extends Component {
                 body: JSON.stringify({
                     person: `${this.state.name.value}`,
                 }),
-            })
-            .then((res) => {
+            }).then((res) => {
                 return res.json();
-            })
-            .then(() => {
+            }).then(() => {
                return this.context.enqueue(this.state.name.value);
-            })
-            .then(() =>{
+            }).then(() =>{
                 return this.context.runDemo(this.state.name.value);
-            })
-            .catch((error) => {
+            }).catch((error) => {
                 this.setState({
                     isError: true,
                     errorMsg: error.message
-                })
-            })
-        }
-    }
-    
+                });
+            });
+        };
+    };
     updateName = (name) => {
-        this.setState({ name: { value: name } })
-    }
-
+        this.setState({ name: { value: name } });
+    };
     render() {
         if (this.state.redirect) {
             return <Redirect to={this.state.redirect} />;
-        }
-        
+        }; 
         const { className, ...otherProps } = this.props;
         this.history = otherProps.history;
-
-        return (
-            
+        return (    
             <div className='form'>
                 <h1>Sign Up</h1>
                 <form onSubmit={(e) => this.submitPerson(e)}>
@@ -101,7 +84,6 @@ class Form extends Component {
                 </form>
             </div>
         );
-    }
-}
-
-export default Form
+    };
+};
+export default Form;

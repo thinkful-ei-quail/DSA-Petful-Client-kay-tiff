@@ -2,7 +2,6 @@
 import React, { Component } from 'react';
 import ApiContext from '../../ApiContext';
 import config from '../../config';
-
 class Dog extends Component {
     constructor(props) {
         super(props)
@@ -19,8 +18,8 @@ class Dog extends Component {
     confirmAdopt = (e) => {
         let confirmed = window.confirm("Are you sure?");
         if (confirmed){
-            return this.handleAdoptDog(e)
-        }
+            return this.handleAdoptDog(e);
+        };
     };
     handleAdoptDog = (e) => {
         e.preventDefault();
@@ -68,5 +67,4 @@ class Dog extends Component {
         );
     };
 };
-
 export default Dog;

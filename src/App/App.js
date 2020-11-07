@@ -167,8 +167,7 @@ class App extends Component {
                 return this.runDemo(name,i,l)
             })  
         }
-    }, 5000)}
-
+    }, 5000)};
     render() {
         const value = {
             pets: this.state.pets,
@@ -184,15 +183,12 @@ class App extends Component {
             enqueue: this.enqueue,
             runDemo: this.runDemo,
             onClickJoin: this.onClickJoin,
-        }
-
+        };
         return(
             <ApiContext.Provider value={value}>
                 {this.renderRoutes()}
             </ApiContext.Provider>
-
         );
-    }
-}
-
-export default App
+    };
+};
+export default App;
