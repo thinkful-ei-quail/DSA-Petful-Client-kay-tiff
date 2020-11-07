@@ -19,11 +19,49 @@ class Dog extends Component {
 
     static contextType = ApiContext;
 
+    confirmation = () => {
+        window.confirm("Are you sure?")
+    }
+
+    adoptDog = (e) => {
+        this.confirmation()
+        // e.preventDefault()
+        fetch(`${config.API_ENDPOINT}pets/dog`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({type: 'dog'}),
+        })
+        .then(() => {
+            fetch(`${config.API_ENDPOINT}pets/dog`)
+        })
+        e.preventDefault()
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+    }
     
     toggleAdoptBtn = (dog) => {
         if (this.context.userName === this.context.queue[0]){
             return (
                 <div className='btn'><button onClick={(e) => this.context.handleAdoptDog(e)}>Adopt {dog.name}</button></div>
+            )
+        }
+    }
+
+    doubleCheck = () => {
+        if (this.adoptDog()) {
+            return (
+                <div className='Adopt'>
+                <h2> Are you sure?</h2>
+                <button>Yes</button>
+                <button>No</button>
+                </div>
             )
         }
     }

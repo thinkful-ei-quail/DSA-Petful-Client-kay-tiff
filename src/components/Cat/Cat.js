@@ -11,6 +11,34 @@ class Cat extends Component {
     }
     static contextType = ApiContext;
 
+    confirmation = () => {
+        window.confirm("Are you sure?")
+    }
+
+    adoptCat = (e) => {
+        this.confirmation()
+        // e.preventDefault()
+        fetch(`${config.API_ENDPOINT}pets/cat`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({type: 'cats'}),
+        })
+        .then(() => {
+            fetch(`${config.API_ENDPOINT}pets/cat`)
+        })
+
+        e.preventDefault()
+        fetch(`${config.API_ENDPOINT}people`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify(),
+        })
+    }
+
     toggleAdoptBtn = (cat) => {
         if (this.context.userName === this.context.queue[0]){
             return (
