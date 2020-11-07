@@ -5,6 +5,7 @@ export default React.createContext({
   cat: [],
   dog: [],
   queue: [],
+  runDemo: () => {},
   enqueue: () => {},
   toggleFirst: ()=> {},
   dequeue: () => {},
