@@ -168,7 +168,8 @@ class App extends Component {
         window.location.reload()
     })
     }
-    runDemo = (name,i,l) => { setTimeout(() => {  
+    runDemo = (name,i,l) => { setTimeout(() => {
+
         if (!l){//define variables
             i = 0
             l = this.state.queue.length
@@ -209,12 +210,16 @@ class App extends Component {
                 body: JSON.stringify(),
             }).then(() => {
                 clearTimeout(this.runDemo)
-            }).then(() => {
-               return this.runDemo(name,i,l)
             })
-      
+            fetch(`${config.API_ENDPOINT}people`)// people queue
+            .then(response => response.json())
+            .then((queue) => {
+              this.setState({queue});
+            }).then(() => {
+                return this.runDemo(name,i,l)
+            })  
         }
-        if ( l < 5 && name === this.state.queue[i] ){//run demo post register
+        if ( l < 5 && name === this.state.queue[i] ){//run demo post
             l++
             let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
             fetch(`${config.API_ENDPOINT}people`, {
@@ -225,13 +230,16 @@ class App extends Component {
                 body: JSON.stringify({
                     person: adoptees[Math.floor((Math.random() * 10))],
                 }),
-            }).then(() =>{
-                fetch(`${config.API_ENDPOINT}people`)
             }).then(() => {
                 clearTimeout(this.runDemo)
-            }).then(()=>{
-            return this.runDemo(name,i,l)
             })
+            fetch(`${config.API_ENDPOINT}people`)// people queue
+            .then(response => response.json())
+            .then((queue) => {
+              this.setState({queue});
+            }).then(() => {
+                return this.runDemo(name,i,l)
+            })  
         }
     }, 5000)}
 
