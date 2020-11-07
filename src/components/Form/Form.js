@@ -87,18 +87,30 @@ class Form extends Component {
         }
         if (this.state.name.value === this.context.queue[i] && l === 5){
             clearTimeout(this.runDemo)
-            return window.location.reload()
+            return this.context.toggleFirst()
         } 
         if (this.state.name.value !== this.context.queue[i] && l > 1 ){
             i++
             l--
-            fetch(`${config.API_ENDPOINT}pets/dog`, {
-                method: "DELETE",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({type: 'dog'}),
-            })
+            let coin = Math.floor(Math.random() * 100)
+            if(coin < 50){
+                fetch(`${config.API_ENDPOINT}pets/cat`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({type: 'cat'}),
+                })
+            }
+            else {
+                fetch(`${config.API_ENDPOINT}pets/dog`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({type: 'dog'}),
+                })
+            }
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "DELETE",
                 headers: {
@@ -134,7 +146,6 @@ class Form extends Component {
             console.log(this.context.queue[i])
         }
     }, 5000)}
-    
     
 
     render() {

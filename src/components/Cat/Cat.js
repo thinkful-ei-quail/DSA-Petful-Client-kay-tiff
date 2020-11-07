@@ -40,7 +40,7 @@ class Cat extends Component {
     }
 
     toggleAdoptBtn = (cat) => {
-        if (this.context.userName === this.context.queue[0]){
+        if (this.context.userName === this.context.queue[0]||this.context.isFirst){
             return (
                 <div className='btn'><button onClick={(e) => this.context.handleAdoptCat(e)}>Adopt {cat.name}</button></div>
             )
@@ -53,7 +53,7 @@ class Cat extends Component {
 
         return(
             <div className='main-cat'>
-               <img src={cat.imageURL} alt='cat photo'/>
+               <img src={cat.imageURL} alt='cat'/>
                <p>Name: {cat.name}</p>
                <p>Gender: {cat.gender}</p>
                <p>Age: {cat.age}</p>

@@ -47,7 +47,7 @@ class Dog extends Component {
     }
     
     toggleAdoptBtn = (dog) => {
-        if (this.context.userName === this.context.queue[0]){
+        if (this.context.userName === this.context.queue[0]||this.context.isFirst){
             return (
                 <div className='btn'><button onClick={(e) => this.context.handleAdoptDog(e)}>Adopt {dog.name}</button></div>
             )
@@ -81,7 +81,7 @@ class Dog extends Component {
         const {dog =[] } = this.context;
         return(
             <div className='main-dog'>
-               <img className='img' src={dog.imageURL} alt='dog photo'/>
+               <img className='img' src={dog.imageURL} alt='dog'/>
                <p>Name: {dog.name}</p>
                <p>Gender: {dog.gender}</p>
                <p>Age: {dog.age}</p>
