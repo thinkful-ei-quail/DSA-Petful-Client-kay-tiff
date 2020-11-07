@@ -43,7 +43,13 @@ class HomePage extends Component {
                 return <Queue/>
             }
         }
-
+        const displayBtn = () => {
+            if (!this.context.inLine){
+                return(
+                    <button onClick={this.context.onClickJoin}>Sign Up & Adopt!</button>
+                )
+            }
+        }
         return(
             <div className='home'>
               <Header/>
@@ -54,7 +60,7 @@ class HomePage extends Component {
                 {displayDog()}
               </div>
                 <div className='btn'>
-                <button onClick={this.context.onClickJoin}>Sign Up & Adopt!</button>
+                {displayBtn()}
                 </div>
               <div className= 'queue'>
                   {displayForm()} 
