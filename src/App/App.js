@@ -154,12 +154,10 @@ adoptFromQueue = () => {
         this.setState({ isAdding : true})
         }
     }
-
     onClickSubmit = () => {
         this.setState({ isAdding : false, inLine: true})
-        Promise.all([this.addNameToQueue(), this.adoptFromQueue()])
+        //Promise.all([this.addNameToQueue(), this.adoptFromQueue()])
     }
-
     enqueue = (userName) => {
         fetch(`${config.API_ENDPOINT}people`)
         .then((res) => res.json())
