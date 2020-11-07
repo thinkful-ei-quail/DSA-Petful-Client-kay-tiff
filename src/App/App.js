@@ -71,7 +71,6 @@ class App extends Component {
 
 
     }
-
     renderRoutes(){
         return(
             <>
@@ -87,7 +86,6 @@ class App extends Component {
             </>
         )
     }
-
     onClickJoin = () => {
         if (this.state.inLine){
             alert( 'You are already in line!')
@@ -115,13 +113,11 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     }
-
     displayOptions = () => {
         if (sessionStorage.person === this.context.queue[0]){
             this.setState({ isFirst : true })
         }
     }
-
     handleAdoptCat = (e) => {
         e.preventDefault()
         fetch(`${config.API_ENDPOINT}pets/cat`, {
@@ -146,7 +142,7 @@ class App extends Component {
       .then(() => {
           window.location.reload()
       })
-  }
+    }
   handleAdoptDog = (e) => {
     e.preventDefault()
     fetch(`${config.API_ENDPOINT}pets/dog`, {
@@ -171,19 +167,73 @@ class App extends Component {
     .then(() => {
         window.location.reload()
     })
-}
-  cycleList = () => {
-
-    if(this.context.userName !== this.context.queue[0]){
-      let coin = Math.floor(Math.random() * 100)
-      if(coin < 50){
-        this.handleAdoptCat()
-      }
-      else {
-        this.handleAdoptDog()
-      }
     }
-  }
+    runDemo = (name,i,l) => { setTimeout(() => {  
+        if (!l){//define variables
+            i = 0
+            l = this.state.queue.length
+            this.onClickSubmit()
+            return this.runDemo(name,i,l)
+        }
+        if (name === this.state.queue[i] && l === 5){//set base case
+            clearTimeout(this.runDemo)
+            return this.toggleFirst()
+        } 
+        if (name !== this.state.queue[i] && l > 1 ){//run demo adopt
+            i++
+            l--
+            let coin = Math.floor(Math.random() * 100)
+            if(coin < 50){
+                fetch(`${config.API_ENDPOINT}pets/cat`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({type: 'cat'}),
+                })
+            }
+            else {
+                fetch(`${config.API_ENDPOINT}pets/dog`, {
+                    method: "DELETE",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({type: 'dog'}),
+                })
+            }
+            fetch(`${config.API_ENDPOINT}people`, {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify(),
+            }).then(() => {
+                clearTimeout(this.runDemo)
+            }).then(() => {
+               return this.runDemo(name,i,l)
+            })
+      
+        }
+        if ( l < 5 && name === this.state.queue[i] ){//run demo post register
+            l++
+            let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
+            fetch(`${config.API_ENDPOINT}people`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    person: adoptees[Math.floor((Math.random() * 10))],
+                }),
+            }).then(() =>{
+                fetch(`${config.API_ENDPOINT}people`)
+            }).then(() => {
+                clearTimeout(this.runDemo)
+            }).then(()=>{
+            return this.runDemo(name,i,l)
+            })
+        }
+    }, 5000)}
 
     render() {
         const value = {
@@ -199,7 +249,7 @@ class App extends Component {
             userName: this.state.userName,
             toggleFirst: this.toggleFirst,
             enqueue: this.enqueue,
-            splitName: this.splitName,
+            runDemo: this.runDemo,
             onClickJoin: this.onClickJoin,
             onClickSubmit: this.onClickSubmit,
             handleAdoptCat: this.handleAdoptCat,
