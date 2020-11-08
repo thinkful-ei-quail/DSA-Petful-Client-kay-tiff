@@ -7,7 +7,7 @@ class Header extends Component {
 
     render() {
         return(
-            <div className='container'>
+            <div className='header'>
                 <Link to= '/'>
                     <h1>FIFO adoptions</h1>
                 </Link>

@@ -7,25 +7,13 @@ import demo from '../../images/demo.jpg';
 class About extends Component {
     static contextType = ApiContext;
     render() {
-        const displayImage = ()=>{
-            if (this.context.pets[0]){
-                return(
-                    <img className='img' src={this.context.pets[0].imageURL} alt='pet'/>
-                )
-            }else{
-                return(
-                    <img className='img' src={demo} alt='pet'/>
-                )
-            }
-        }
         return(
-            <div className='container'>
+            <div className='about'>
                <Header/>
-               {displayImage()}
-               <p>Petful is an adoption agency that encourages equity by adopting out cats and dogs by the length of time 
-                   they've spent here. Each pet is adopted out on a first come first serve basis. To adopt a pet you must 'get in line' 
-                   by signing up on our adoptee list, and then once its your turn to adopt, the oldest pet at that time is who you take 
-                   home!</p>
+               <img src={demo} alt='a sad kitty'/>
+               <p>Petful is an adoption agency that encourages equity by adopting out cats and dogs by the length of time they've spent here. 
+                   Each pet is adopted on a first-come, first-serve basis. To adopt a pet, you must get in line by adding your name to
+                    the adoptee list, and then once it's your turn to adopt, the oldest pet at that time is who you take home!</p>
                 <p style={{textAlign:'center'}}>Happy Adopting!!</p>
                 <Link to= '/home'>
                     <div className='btn'><button>Start</button></div>

@@ -22,7 +22,7 @@ class HomePage extends Component {
         const displayBtn = () => {
             if (!this.context.inLine){
                 return(
-                    <button onClick={this.context.onClickJoin}>Sign Up & Adopt!</button>
+                    <button onClick={this.context.onClickJoin}>Sign Up</button>
                 );
             };
             return (

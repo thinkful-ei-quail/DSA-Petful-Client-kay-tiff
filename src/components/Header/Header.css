@@ -1,3 +1,13 @@
- a, a:hover, a:focus, a:active {
-    text-decoration: none;
+
+.header{
+    background-color: #5D2E46;
+    display: flex;
+    margin: 0 auto;
+    padding: 5px;
+    user-select: none;
+}
+
+.header h1{
+    color: #E8D6CB;
+    font-family: 'Big Shoulders Inline Text';
 }
