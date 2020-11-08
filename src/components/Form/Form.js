@@ -70,7 +70,7 @@ class Form extends Component {
         this.history = otherProps.history;
         return (    
             <div className='form'>
-                <h1>Sign Up</h1>
+                <h2>Sign Up</h2>
                 <form onSubmit={(e) => this.submitPerson(e)}>
                     <label className='form-row'>
                         Name:
@@ -80,7 +80,7 @@ class Form extends Component {
                             onChange={(e) => this.updateName(e.target.value)}
                             />
                     </label>
-                    <div className='form-row'><input type="submit" name="submit" /></div>
+                    <div className='form-row'><input type="submit" name="submit" className="submit" /></div>
                 </form>
             </div>
         );

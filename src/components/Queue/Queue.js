@@ -8,7 +8,7 @@ class Queue extends Component {
     render() {
         const { queue = [] } = this.context
         return(
-            <div className='queue-container'>
+            <div className='queue'>
                <h2>Adopters in line:</h2>
                 <ul>        
                 {queue.map((person, i) => 

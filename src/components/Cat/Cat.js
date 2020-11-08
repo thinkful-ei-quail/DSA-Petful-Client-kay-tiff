@@ -3,12 +3,6 @@ import ApiContext from '../../ApiContext';
 import config from '../../config';
 
 class Cat extends Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-
-        };
-    }
     static contextType = ApiContext;
 
     confirmation = () => {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Header from '../../components/Header/Header';
 import Cat from '../../components/Cat/Cat';
 import Dog from '../../components/Dog/Dog';
 import Queue from '../../components/Queue/Queue';
@@ -30,19 +29,10 @@ class HomePage extends Component {
         };
         return(
             <div className='home'>
-                <Header/>
-                <div className='btn'>
-                    {displayBtn()}
-                </div>
-                <div className= 'queue'>
-                    {displayForm()} 
-                </div>
-                <div className= 'cat-column'>
-                    <Cat/>
-                </div>
-                <div className= 'dog-column'>
-                    <Dog/>
-                </div>
+                {displayBtn()}
+                {displayForm()} 
+                <Cat/>
+                <Dog/>
             </div>
         );
     };
