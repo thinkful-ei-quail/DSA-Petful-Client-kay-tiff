@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import './App.css';
 import {Route} from 'react-router-dom';
 import ApiContext from "../ApiContext";
 import config from "../config";
 import About from "../pages/About/About";
 import HomePage from "../pages/HomePage/HomePage";
+
 class App extends Component {
     constructor(props) {
         super(props)

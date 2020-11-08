@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import ApiContext from '../../ApiContext';
 import config from '../../config';
+
 class Dog extends Component {
     constructor(props) {
         super(props)

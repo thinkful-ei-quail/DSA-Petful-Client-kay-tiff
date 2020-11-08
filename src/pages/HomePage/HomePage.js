@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import './HomePage.css';
 import Header from '../../components/Header/Header';
 import Cat from '../../components/Cat/Cat';
 import Dog from '../../components/Dog/Dog';

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import './Form.css';
 import config from '../../config';
 import ApiContext from '../../ApiContext';
+
 class Form extends Component {
     constructor(props) {
         super(props)
