@@ -96,10 +96,16 @@ class App extends Component {
         });
     };
     runDemo = (name) => { 
+        fetch(`${config.API_ENDPOINT}people`)// people queue
+        .then(response => 
+            response.json()
+        ).then((queue) => {
+            this.setState({queue});
+        })
         console.log('queue', this.state.queue,'name',name)
         this.setState({isAdding : false, inLine: true});
         setTimeout(() => {
-        if (name === this.state.queue[1] && this.state.queue.length === 5){//set base case
+        if (name === this.state.queue[0] && this.state.queue.length === 5){//set base case
             console.log('a')
             this.setState({isFirst: true});
             clearTimeout(this.runDemo);
