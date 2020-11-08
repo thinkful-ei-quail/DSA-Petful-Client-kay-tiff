@@ -32,8 +32,11 @@ class HomePage extends Component {
                 {displayBtn()}
                 {displayForm()} 
                 <div className='pets'>
+                    <hr />
                     <Cat/>
+                    <hr />
                     <Dog/>
+                    <hr />
                 </div>
             </div>
         );

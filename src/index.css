@@ -6,8 +6,12 @@ html, body{
 }
 
 .body{
-  
-padding: 5em 0;
+  padding: 5em 0;
+}
+
+hr{
+  padding: 15px;
+  border: none;
 }
 
 a, a:hover, a:focus, a:active {
@@ -98,13 +102,13 @@ button:hover, .submit:hover{
   .about{
     margin: 5px;
   }
-  .about-sec{
+  .about-sec, .cat, .dog{
     margin: 15px;
   }
 }
 
 @media only screen and (min-width: 600px) {
-  .about-sec{
+  .about-sec, .cat, .dog{
     margin-bottom: 25px;
   }
 
@@ -123,7 +127,7 @@ button:hover, .submit:hover{
 }
 
 .cat, .dog{
-  margin: 0 25px;
+  margin: 25px;
   display: block;
   margin-left: auto;
   margin-right: auto;
