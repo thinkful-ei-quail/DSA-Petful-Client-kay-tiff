@@ -11,6 +11,8 @@ a, a:hover, a:focus, a:active {
 
 ul{
   list-style-type: none;
+  padding-left: 0;
+  text-align: center;
 }
 
 h2{
@@ -26,7 +28,7 @@ p{
 
 img{
   padding: 15px;
-  width: 50%;
+  width: 75%;
   display: block;
   margin-left: auto;
   margin-right: auto;
@@ -40,7 +42,7 @@ button, .submit{
   font-weight: 700;
   font-size: .8em;
   letter-spacing: .9px;
-  margin: 0 auto;
+  margin: 20px auto;
   padding: 8px 10px;
   display: block;
   border-radius: 5px;
@@ -102,6 +104,11 @@ button:hover, .submit:hover{
 .home{
   margin-left: auto;
   margin-right: auto;
+}
+
+.cat, .dog{
+  margin: 0 25px;
+  display: block;
 }
 
 /* FORM */
