@@ -41,7 +41,8 @@ class Dog extends Component {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify(),
-        }).then(() => {
+        })
+        .then(() => {
             window.location.reload()
         });
         return true;

@@ -135,7 +135,6 @@ class App extends Component {
             }); 
         };
         if ( this.state.queue.length  < 5 && name === this.state.queue[0] ){//run demo post
-            console.log('c')
             let adoptees = ['Dolly Parton', 'Lucille Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr. Potato Head']
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
@@ -177,14 +176,16 @@ class App extends Component {
         return(
             <ApiContext.Provider value={value}>
                 <Header />
-                <Route
-                    exact path = '/'
-                    component= {About}
-                />
-                <Route
-                    path = '/home'
-                    component = {HomePage}
-                />
+                <div className='body'>
+                    <Route
+                        exact path = '/'
+                        component= {About}
+                    />
+                    <Route
+                        path = '/home'
+                        component = {HomePage}
+                    />
+                </div>
             </ApiContext.Provider>
         );
     };

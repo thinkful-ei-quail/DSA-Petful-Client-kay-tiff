@@ -5,6 +5,11 @@ html, body{
   margin: 0;
 }
 
+.body{
+  
+padding: 5em 0;
+}
+
 a, a:hover, a:focus, a:active {
   text-decoration: none;
 }
@@ -61,7 +66,9 @@ button:hover, .submit:hover{
   background-color: #5D2E46;
   margin: 0 auto;
   padding: 5px;
-  user-select: none;
+  position: fixed;
+  width:100%;
+  right:0px;
 }
 
 .header h1{
@@ -78,7 +85,7 @@ button:hover, .submit:hover{
 
 /* ABOUT */
 
-.about{
+.about, .cat, .dog{
   padding: 5px 10px;
   margin-top: 0;
   margin-left: 25px;
@@ -118,6 +125,8 @@ button:hover, .submit:hover{
 .cat, .dog{
   margin: 0 25px;
   display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .cat p, .dog p{
@@ -126,6 +135,10 @@ button:hover, .submit:hover{
 
 @media only screen and (min-width: 600px) and (max-width: 1000px){ 
   .home{
+    display: block;
+    flex-direction: column;
+    margin-right: auto;
+    margin-left: auto;
     margin-top: 50px;
   }
   .pets{
@@ -135,11 +148,6 @@ button:hover, .submit:hover{
 }
 
 @media only screen and (min-width: 1000px) {
-  .home{
-    margin-left: auto;
-    margin-right: auto;
-    max-width: 1200px;
-  }
 
   img{
     width: 50%;
