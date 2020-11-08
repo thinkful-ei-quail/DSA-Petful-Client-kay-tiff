@@ -95,20 +95,17 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     };
-    runDemo = (name,i,l) => { setTimeout(() => {
-        if (!l){//define variables
-            i = 0;
-            l = this.state.queue.length;
-            this.setState({ isAdding : false, inLine: true});
-            clearTimeout(this.runDemo);
-            return this.runDemo(name,i,l);
-        }else if (name === this.state.queue[i] && l === 5){//set base case
+    runDemo = (name) => { 
+        console.log('queue', this.state.queue,'name',name)
+        this.setState({isAdding : false, inLine: true});
+        setTimeout(() => {
+        if (name === this.state.queue[1] && this.state.queue.length === 5){//set base case
+            console.log('a')
             this.setState({isFirst: true});
             clearTimeout(this.runDemo);
             return;
-        } else if (name !== this.state.queue[i] && l > 1 ){//run demo adopt
-            i++;
-            l--;
+        } if (name !== this.state.queue[0] && this.state.queue.length > 1 ){//run demo adopt
+            console.log('b')
             let coin = Math.floor(Math.random() * 100);
             if(coin < 50){
                 fetch(`${config.API_ENDPOINT}pets/cat`, {
@@ -142,11 +139,11 @@ class App extends Component {
             ).then((queue) => {
                 this.setState({queue});
             }).then(() => {
-                return this.runDemo(name,i,l)
+                return this.runDemo(name)
             }); 
         };
-        if ( l < 5 && name === this.state.queue[i] ){//run demo post
-            l++
+        if ( this.state.queue.length  < 5 && name === this.state.queue[0] ){//run demo post
+            console.log('c')
             let adoptees = ['Dolly Parton', 'Lucy Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr.PotatoHead']
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",
@@ -158,14 +155,15 @@ class App extends Component {
                 }),
             }).then(() => {
                 clearTimeout(this.runDemo)
-            })
-            fetch(`${config.API_ENDPOINT}people`)// people queue
-            .then(response => response.json())
-            .then((queue) => {
-              this.setState({queue});
-            }).then(() => {
-                return this.runDemo(name,i,l)
-            })  
+            }).then(
+                fetch(`${config.API_ENDPOINT}people`)// people queue
+                .then(response => response.json())
+                .then((queue) => {
+                  this.setState({queue});
+                }).then(() => {
+                    return this.runDemo(name)
+                })  
+            )
         }
     }, 5000)};
     render() {

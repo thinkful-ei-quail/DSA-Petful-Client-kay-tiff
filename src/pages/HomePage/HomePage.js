@@ -5,26 +5,11 @@ import Cat from '../../components/Cat/Cat';
 import Dog from '../../components/Dog/Dog';
 import Queue from '../../components/Queue/Queue';
 import Form from '../../components/Form/Form';
-import Adopt from '../../components/Adopt/Adopt';
 import ApiContext from '../../ApiContext';
 
 class HomePage extends Component {
     static contextType = ApiContext;
     render() {
-        const displayCat = () => {
-            if (this.context.adoptCat){
-                return <Adopt/>
-            } else {
-                return <Cat/>
-            };
-        };
-        const displayDog = () => {
-            if (this.context.adoptDog){
-                return <Adopt/>
-            } else {
-                return <Dog/>
-            };
-        };
         const displayForm = () => {
             if (this.context.isAdding){
                 return (
@@ -42,16 +27,16 @@ class HomePage extends Component {
             };
             return (
                 <p>Please wait for your turn to adopt.</p>
-            )
+            );
         };
         return(
             <div className='home'>
                 <Header/>
                 <div className= 'cat-column'>
-                    {displayCat()}
+                    <Cat/>
                 </div>
                 <div className= 'dog-column'>
-                    {displayDog()}
+                    <Dog/>
                 </div>
                 <div className='btn'>
                     {displayBtn()}
