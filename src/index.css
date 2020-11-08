@@ -45,8 +45,8 @@ img{
   
 button, .submit{
   font-family: 'Franklin Gothic Medium';
-  color: #5D2E46;
-  background-color: #B58DB6;
+  color: #000000;
+  background-color: #AD6A6C;
   text-align: center;
   font-weight: 700;
   font-size: .8em;
@@ -60,7 +60,7 @@ button, .submit{
 
 button:hover, .submit:hover{
   cursor: pointer;
-  background-color: #AD6A6C;
+  background-color: #d0ada7;
   box-shadow: 1px 1px #000000;
 }
 
