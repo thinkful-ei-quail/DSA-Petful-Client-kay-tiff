@@ -88,16 +88,13 @@ class App extends Component {
         ).then((queue) => {
             this.setState({queue});
         })
-        console.log('queue', this.state.queue,'name',name)
         this.setState({isAdding : false, inLine: true});
         setTimeout(() => {
         if (name === this.state.queue[0] && this.state.queue.length === 5){//set base case
-            console.log('a')
             this.setState({isFirst: true});
             clearTimeout(this.runDemo);
             return;
         } if (name !== this.state.queue[0] && this.state.queue.length > 1 ){//run demo adopt
-            console.log('b')
             let coin = Math.floor(Math.random() * 100);
             if(coin < 50){
                 fetch(`${config.API_ENDPOINT}pets/cat`, {
@@ -114,7 +111,7 @@ class App extends Component {
                         "Content-Type": "application/json",
                     },
                     body: JSON.stringify({type: 'dog'}),
-                })
+                });
             };
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "DELETE",
@@ -130,6 +127,16 @@ class App extends Component {
                 response.json()
             ).then((queue) => {
                 this.setState({queue});
+            });
+            fetch(`${config.API_ENDPOINT}pets/cat`)//first cat
+            .then(response => response.json())
+            .then((cat) => {
+              this.setState({cat });
+            });
+            fetch(`${config.API_ENDPOINT}pets/dog`)//first dog
+            .then(response => response.json())
+            .then((dog) => {
+              this.setState({dog });
             }).then(() => {
                 return this.runDemo(name)
             }); 
