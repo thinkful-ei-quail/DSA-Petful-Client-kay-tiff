@@ -71,17 +71,20 @@ class Form extends Component {
         return (    
             <div className='form'>
                 <h2>Sign Up</h2>
+                <div className='center'>
                 <form onSubmit={(e) => this.submitPerson(e)}>
                     <label className='form-row'>
                         Name:
                         <input
                             type='text'
                             name='name'
+                            placeholder='Joni Mitchel'
                             onChange={(e) => this.updateName(e.target.value)}
                             />
                     </label>
                     <div className='form-row'><input type="submit" name="submit" className="submit" /></div>
                 </form>
+                </div>
             </div>
         );
     };
