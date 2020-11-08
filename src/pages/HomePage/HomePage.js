@@ -26,23 +26,23 @@ class HomePage extends Component {
                 );
             };
             return (
-                <p>Please wait for your turn to adopt.</p>
+                <h2>Please wait for your turn to adopt.</h2>
             );
         };
         return(
             <div className='home'>
                 <Header/>
-                <div className= 'cat-column'>
-                    <Cat/>
-                </div>
-                <div className= 'dog-column'>
-                    <Dog/>
-                </div>
                 <div className='btn'>
                     {displayBtn()}
                 </div>
                 <div className= 'queue'>
                     {displayForm()} 
+                </div>
+                <div className= 'cat-column'>
+                    <Cat/>
+                </div>
+                <div className= 'dog-column'>
+                    <Dog/>
                 </div>
             </div>
         );
