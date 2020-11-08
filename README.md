@@ -8,8 +8,8 @@
 FIFO Adoption is an adoption agency app that uses singly linked lists to adopt out pets on a first-come first-serve basis. By signing up for adoption, a user will be added to a list and will then be able to adopt a pet based on the oldest pet available at the time.  
 
 ## Screenshots:  
-![about](images/petful.JPG)
-![home](images/petful2.JPG)  
+![about](/images/petful.JPG)
+![home](/images/petful2.JPG)  
 
 ## Tech Stack:  
 Front End: React, JavaScript, CSS3, HTML5, Vercel
