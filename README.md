@@ -1,4 +1,4 @@
-# Petful Client  
+# FIFO Adoptions  
 ### by [Tiffany Summerford](https://github.com/breakfastatiffs) and [Kayleigh Young](https://github.com/kayleighkat98)  
 [Petful Adoption](https://petful-client-peach.vercel.app/) ||
 [Client GitHub](https://github.com/thinkful-ei-quail/DSA-Petful-Client-kay-tiff) ||
