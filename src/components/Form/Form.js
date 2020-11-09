@@ -49,14 +49,13 @@ class Form extends Component {
                 return res.json();
             }).then(() => {
                return this.context.enqueue(this.state.name.value);
-            }).then(() =>{
-                return this.context.runDemo(this.state.name.value);
             }).catch((error) => {
                 this.setState({
                     isError: true,
                     errorMsg: error.message
                 });
             });
+                return this.context.runDemo(this.state.name.value);
         };
     };
     updateName = (name) => {
@@ -76,6 +75,7 @@ class Form extends Component {
                     <label className='form-row'>
                         Name:
                         <input
+                            key='user'
                             type='text'
                             name='name'
                             placeholder='Joni Mitchel'

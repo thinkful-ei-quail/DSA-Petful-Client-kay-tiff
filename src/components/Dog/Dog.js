@@ -48,7 +48,7 @@ class Dog extends Component {
         return true;
     };
     toggleAdoptBtn = (dog) => {
-        if (this.context.userName === this.context.queue[0]||this.context.isFirst){
+        if (this.context.isFirst){
             return (<button onClick={(e)=>this.confirmAdopt(e)}>Adopt {dog.name}</button>
             );
         };
