@@ -23,7 +23,7 @@ class HomePage extends Component {
                     <button onClick={this.context.onClickJoin}>Sign Up</button>
                 );
             };
-            if (this.context.userName === this.context.queue[0]||this.context.isFirst){
+            if (this.context.isFirst){
                 return(
                     <h2>It's your turn! Please make your pet selection.</h2>
                 )

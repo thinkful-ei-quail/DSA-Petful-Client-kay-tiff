@@ -56,7 +56,7 @@ class App extends Component {
         fetch(`${config.API_ENDPOINT}people`)// people queue
         .then(response => response.json())
         .then((queue) => {
-          this.setState({queue});
+            this.setState({queue});
         })
         .catch((error) => {
           console.error(error.message );
@@ -74,7 +74,7 @@ class App extends Component {
         .then((res) => res.json())
         .then((queue) => {
           this.setState({
-            userName: userName,
+            userName: {userName, key:'user'},
             queue,
           });
         }).catch((e) => {
@@ -91,7 +91,6 @@ class App extends Component {
         this.setState({isAdding : false, inLine: true});
         setTimeout(() => {
         if (name === this.state.queue[0] && this.state.queue.length === 5){//set base case
-            this.setState({isFirst: true});
             clearTimeout(this.runDemo);
             return;
         } if (name !== this.state.queue[0] && this.state.queue.length > 1 ){//run demo adopt
@@ -142,6 +141,7 @@ class App extends Component {
             }); 
         };
         if ( this.state.queue.length  < 5 && name === this.state.queue[0] ){//run demo post
+            this.setState({isFirst: true}); 
             let adoptees = ['Dolly Parton', 'Lucille Ball', 'Jenny From The Block', 'Samantha Adams', 'Chartreuse Brown', 'Michael Phelps', 'Christian Dior', 'Coco Chanel', 'Shay Evans', 'Mr. Potato Head']
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "POST",

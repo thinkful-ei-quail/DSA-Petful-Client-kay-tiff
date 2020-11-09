@@ -41,7 +41,7 @@ class Cat extends Component {
     }
 
     toggleAdoptBtn = (cat) => {
-        if (this.context.userName === this.context.queue[0]||this.context.isFirst){
+        if (this.context.isFirst){
             return (<button onClick={(e) => this.confirmAdopt(e)}>Adopt {cat.name}</button>
             )
         }

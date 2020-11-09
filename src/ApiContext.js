@@ -12,5 +12,5 @@ export default React.createContext({
   removeUser: () => {},
   userName: null,
   inLine: null,
-  isFirst: ''
+  isFirst: null
 })
