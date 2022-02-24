@@ -81,36 +81,58 @@ class App extends Component {
           console.log("Error loading queue data");
         });
     };
-    runDemo = (name) => { 
+    deletePet = (pet) =>{
+        fetch(`${config.API_ENDPOINT}pets/${pet}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({type: pet}),
+        });
+    }
+    flipCoin = () =>{
+        let coin = Math.floor(Math.random() * 100);
+        if(coin < 50){
+            this.deletePet('cat');
+        }else{
+            this.deletePet('dog');
+        };
+    }
+    peopleQue = () =>{
         fetch(`${config.API_ENDPOINT}people`)// people queue
         .then(response => 
             response.json()
         ).then((queue) => {
             this.setState({queue});
-        })
+        });  
+    }
+    petQue = (pet) =>{
+        fetch(`${config.API_ENDPOINT}pets/${pet}`)//first cat
+        .then(response => response.json())
+        .then((data) => {
+          this.setState({data});
+        });
+    }
+    runDemo = (name) => { 
+        // fetch(`${config.API_ENDPOINT}people`)// people queue
+        // .then(response => 
+        //     response.json()
+        // ).then((queue) => {
+        //     this.setState({queue});
+        // })
+        this.peopleQue();
         this.setState({isAdding : false, inLine: true});
         setTimeout(() => {
         if (name === this.state.queue[0] && this.state.queue.length === 5){//set base case
             clearTimeout(this.runDemo);
             return;
         } if (name !== this.state.queue[0] && this.state.queue.length > 1 ){//run demo adopt
+            // this.flipCoin();
             let coin = Math.floor(Math.random() * 100);
             if(coin < 50){
-                fetch(`${config.API_ENDPOINT}pets/cat`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({type: 'cat'}),
-                })
+                this.deletePet('cat');
             }else{
-                fetch(`${config.API_ENDPOINT}pets/dog`, {
-                    method: "DELETE",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({type: 'dog'}),
-                });
+                this.deletePet('dog');
             };
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "DELETE",
@@ -121,12 +143,13 @@ class App extends Component {
             }).then(() => {
                 clearTimeout(this.runDemo);
             });
-            fetch(`${config.API_ENDPOINT}people`)// people queue
-            .then(response => 
-                response.json()
-            ).then((queue) => {
-                this.setState({queue});
-            });
+            // fetch(`${config.API_ENDPOINT}people`)// people queue
+            // .then(response => 
+            //     response.json()
+            // ).then((queue) => {
+            //     this.setState({queue});
+            // });
+            this.peopleQue();
             fetch(`${config.API_ENDPOINT}pets/cat`)//first cat
             .then(response => response.json())
             .then((cat) => {
@@ -138,7 +161,8 @@ class App extends Component {
               this.setState({dog });
             }).then(() => {
                 return this.runDemo(name)
-            }); 
+            });
+
         };
         if ( this.state.queue.length  < 5 && name === this.state.queue[0] ){//run demo post
             this.setState({isFirst: true}); 
