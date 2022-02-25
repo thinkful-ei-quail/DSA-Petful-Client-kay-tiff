@@ -82,7 +82,7 @@ class App extends Component {
         });
     };
     deletePet = (pet) =>{
-        fetch(`${config.API_ENDPOINT}pets/${pet}`, {
+        fetch(`${config.API_ENDPOINT}pets/`+pet, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
@@ -107,19 +107,13 @@ class App extends Component {
         });  
     }
     petQue = (pet) =>{
-        fetch(`${config.API_ENDPOINT}pets/${pet}`)//first cat
+        fetch(`${config.API_ENDPOINT}pets/` + pet)//first cat
         .then(response => response.json())
         .then((data) => {
           this.setState({data});
         });
     }
     runDemo = (name) => { 
-        // fetch(`${config.API_ENDPOINT}people`)// people queue
-        // .then(response => 
-        //     response.json()
-        // ).then((queue) => {
-        //     this.setState({queue});
-        // })
         this.peopleQue();
         this.setState({isAdding : false, inLine: true});
         setTimeout(() => {
@@ -127,13 +121,7 @@ class App extends Component {
             clearTimeout(this.runDemo);
             return;
         } if (name !== this.state.queue[0] && this.state.queue.length > 1 ){//run demo adopt
-            // this.flipCoin();
-            let coin = Math.floor(Math.random() * 100);
-            if(coin < 50){
-                this.deletePet('cat');
-            }else{
-                this.deletePet('dog');
-            };
+            this.flipCoin();
             fetch(`${config.API_ENDPOINT}people`, {
                 method: "DELETE",
                 headers: {
@@ -143,18 +131,8 @@ class App extends Component {
             }).then(() => {
                 clearTimeout(this.runDemo);
             });
-            // fetch(`${config.API_ENDPOINT}people`)// people queue
-            // .then(response => 
-            //     response.json()
-            // ).then((queue) => {
-            //     this.setState({queue});
-            // });
             this.peopleQue();
-            fetch(`${config.API_ENDPOINT}pets/cat`)//first cat
-            .then(response => response.json())
-            .then((cat) => {
-              this.setState({cat });
-            });
+            this.petQue('cat');//first cat
             fetch(`${config.API_ENDPOINT}pets/dog`)//first dog
             .then(response => response.json())
             .then((dog) => {
